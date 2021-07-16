@@ -19,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/rockpicker',
     name: 'Rock Picker',
     component: () => import('../views/RockPicker.vue')
+  },
+  {
+    path: '/hackathon',
+    name: 'Credits',
+    component: () => import('../views/Credits.vue')
   }
 ]
 
