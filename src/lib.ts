@@ -1,15 +1,12 @@
-import Rock from '@/plugins/types/Rock'
+import Rock from '@/types/Rock'
 import { v4 as uuidv4 } from 'uuid'
-import { ROCK_TYPES } from '@/plugins/types/ROCK_TYPES'
+import { ROCK_TYPES } from '@/types/ROCK_TYPES'
 
-// https://stackoverflow.com/questions/44230998/how-to-get-a-random-enum-in-typescript
-function randomEnum<T> (anEnum: T): T[keyof T] {
-  const enumValues = Object.keys(anEnum)
-    .map(n => Number.parseInt(n))
-    .filter(n => !Number.isNaN(n)) as unknown as T[keyof T][]
-  const randomIndex = Math.floor(Math.random() * enumValues.length)
-  const randomEnumValue = enumValues[randomIndex]
-  return randomEnumValue
+function randomEnum<T extends {[key: string]: T[keyof T]}> (anEnum: T): T[keyof T] {
+  const keys = Object.keys(anEnum) as string[]
+  const index = Math.floor(Math.random() * keys.length)
+  const key = keys[index] as string
+  return anEnum[key]
 }
 
 export const makeRock = (): Rock => ({

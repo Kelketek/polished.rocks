@@ -6,7 +6,7 @@ import { initializeStore, injectionKey } from '@/plugins/store'
 
 declare global {
   interface Window {
-    rocks: any
+    rocks: ReturnType<typeof createApp>
   }
 }
 
@@ -14,4 +14,5 @@ window.rocks = createApp(App)
   .use(router)
   .use(vuetify)
   .use(initializeStore(), injectionKey)
-  .mount('#app')
+
+window.rocks.mount('#app')

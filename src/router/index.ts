@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'RockPicker',
+    component: () => import('../views/RockPicker.vue')
   },
   {
     path: '/about',
@@ -16,9 +15,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/rockpicker',
-    name: 'Rock Picker',
-    component: () => import('../views/RockPicker.vue')
+    path: '/placeholder',
+    name: 'Placeholder',
+    component: () => import('../views/Placeholder.vue')
   },
   {
     path: '/hackathon',
