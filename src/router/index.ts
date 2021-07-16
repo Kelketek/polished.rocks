@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
-import Credits from '../views/Credits.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,9 +16,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/rockpicker',
+    name: 'Rock Picker',
+    component: () => import('../views/RockPicker.vue')
+  },
+  {
     path: '/hackathon',
     name: 'Credits',
-    component: Credits
+    component: () => import('../views/Credits.vue')
   }
 ]
 
