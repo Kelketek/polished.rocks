@@ -6,7 +6,7 @@
       ></v-img>
 
       <v-card-title class="title-text">
-        {{ firstName }} {{ lastName }}
+        <a :href="link" target="_none">{{ firstName }} {{ lastName }}</a>
       </v-card-title>
 
       <v-card-subtitle class="name-text">
@@ -39,6 +39,10 @@ export default defineComponent({
       required: true
     },
     image: {
+      type: String,
+      required: false
+    },
+    link: {
       type: String,
       required: false
     }

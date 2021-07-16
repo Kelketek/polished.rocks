@@ -10,10 +10,10 @@
         or just send us some lava!
       </p>
     </v-row>
-    <hr style="margin-bottom:1em;">
+    <hr style="margin:1em;">
     <v-row>
       <v-col cols="4" v-for="(item, index) in items" :key="index">
-        <Credit :firstName="item.firstName" :lastName="item.lastName" :title="item.title" />
+        <Credit :firstName="item.firstName" :lastName="item.lastName" :title="item.title" :link="item.link" />
       </v-col>
     </v-row>
   </v-container>
@@ -31,11 +31,11 @@ export default defineComponent({
   data () {
     return {
       items: [
-        { firstName: 'Fox', lastName: 'Piacenti', title: 'Founder & CEO' },
+        { firstName: 'Fox', lastName: 'Piacenti', title: 'Founder & CEO', link: 'https://www.artconomy.com' },
         { firstName: 'Joseph', lastName: 'Piacenti', title: 'Animator & Sound Engineer' },
         { firstName: 'Jeremy', lastName: 'Evans', title: 'Visual Artist' },
         { firstName: 'Brad', lastName: 'Rogers', title: 'Designer' },
-        { firstName: 'Corey', lastName: 'Pon', title: 'Software Engineer' },
+        { firstName: 'Corey', lastName: 'Pon', title: 'Software Engineer', link: 'https://www.github.com/cjames9001' },
         { firstName: 'Taylor', lastName: 'Glenn', title: 'Software Engineer' }
       ]
     }
