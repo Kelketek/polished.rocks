@@ -33,10 +33,10 @@
     <v-row>
       <v-col>
         <v-card>
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-          ></v-img>
+          <video
+            src="../assets/tumbler.webm"
+            type="video/webm"
+          ></video>
           <v-card-actions>
             <v-row align="center" justify="center">
               <v-col>
@@ -131,11 +131,12 @@ export default defineComponent({
     },
     getNextGrit (): POLISH_CYCLES {
       const currentCycle = this.$store.state.cycle
-      if (currentCycle === POLISH_CYCLES.COURSE) return POLISH_CYCLES.FINE
+      if (currentCycle === POLISH_CYCLES.UNPOLISHED) return POLISH_CYCLES.COARSE
+      if (currentCycle === POLISH_CYCLES.COARSE) return POLISH_CYCLES.FINE
       if (currentCycle === POLISH_CYCLES.FINE) return POLISH_CYCLES.PREPOLISH
       if (currentCycle === POLISH_CYCLES.PREPOLISH) return POLISH_CYCLES.POLISH
-      if (currentCycle === POLISH_CYCLES.POLISH) return POLISH_CYCLES.COURSE
-      return POLISH_CYCLES.COURSE
+      if (currentCycle === POLISH_CYCLES.POLISH) return POLISH_CYCLES.UNPOLISHED
+      return POLISH_CYCLES.UNPOLISHED
     },
     isTumbling (): boolean {
       return parseInt(this.timerDisplay) > 0 && this.$store.state.running

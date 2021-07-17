@@ -38,15 +38,14 @@ export const initialState = (): RockState => ({
   // the version should be changed.
   version: currentVersion(),
   running: false,
-  cycle: POLISH_CYCLES.COARSE,
+  cycle: POLISH_CYCLES.UNPOLISHED,
   washed: false,
   rockLists: {
     outside: [],
     polished: [],
     tumbling: []
   },
-  nextStop: new Date().toISOString(),
-  washed: true
+  nextStop: new Date().toISOString()
 })
 
 export const migrate = (oldState: {version: Version}): RockState => {
