@@ -10,6 +10,7 @@ const mockStorage = {
     }
     return null
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setItem: (key: string, value: any) => {
     store[key] = `${value}`
   },

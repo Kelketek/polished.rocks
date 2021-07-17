@@ -1,6 +1,6 @@
-import { POLISH_CYCLES } from '@/plugins/types/POLISH_CYCLES'
-import Rock from '@/plugins/types/Rock'
-import { Version } from '@/plugins/types/Version'
+import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
+import Rock from '@/types/Rock'
+import { Version } from '@/types/Version'
 
 export interface RockState {
   version: Version,
@@ -9,7 +9,7 @@ export interface RockState {
   nextStop: string,
   rockLists: {
     tumbling: Rock[],
-    outdoor: Rock[],
+    outside: Rock[],
     polished: Rock[],
   }
 }

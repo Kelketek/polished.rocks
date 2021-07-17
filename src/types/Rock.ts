@@ -1,4 +1,4 @@
-import { ROCK_TYPES } from '@/plugins/types/ROCK_TYPES'
+import { ROCK_TYPES } from '@/types/ROCK_TYPES'
 
 export default interface Rock {
   id: string,

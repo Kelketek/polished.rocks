@@ -5,11 +5,11 @@
 
 import { InjectionKey } from 'vue'
 import { Store, createStore, useStore as baseUseStore } from 'vuex'
-import { RockState } from '@/plugins/types/RockState'
-import { Version } from '@/plugins/types/Version'
-import { POLISH_CYCLES } from '@/plugins/types/POLISH_CYCLES'
+import { RockState } from '@/types/RockState'
+import { Version } from '@/types/Version'
+import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 import deepEqual from 'fast-deep-equal'
-import Rock from '@/plugins/types/Rock'
+import Rock from '@/types/Rock'
 
 declare module '@vue/runtime-core' {
   // Declare our own store state. We actually define the state structure in RockState and then do an empty extension
@@ -39,7 +39,7 @@ export const initialState = (): RockState => ({
   running: false,
   cycle: POLISH_CYCLES.COURSE,
   rockLists: {
-    outdoor: [],
+    outside: [],
     polished: [],
     tumbling: []
   },
@@ -65,13 +65,16 @@ export const retrieveFromStorage = (): RockState => {
   return initialState()
 }
 
-export const stateSavePlugin = (store: Store<RockState>) => {
+export const stateSavePlugin = (store: Store<RockState>): void => {
+  // Remove this lint disabling comment when enabling hydration once more.
+  // eslint-disable-next-line
   store.subscribe((mutation, state) => {
-    localStorage.setItem('rockState', JSON.stringify(state))
+    // Disabling for now for easier debugging.
+    // localStorage.setItem('rockState', JSON.stringify(state))
   })
 }
 
-declare type RockCategory = 'tumbling' | 'polished' | 'outdoor'
+declare type RockCategory = 'tumbling' | 'polished' | 'outside'
 declare type RockMovePayload = {sourceList: RockCategory, rocks: Rock[], destList: RockCategory}
 
 const rocksToIds = (rocks: Rock[]) => rocks.map((rock: Rock) => rock.id)
@@ -96,7 +99,7 @@ export const initializeStore = (): Store<RockState> => {
       },
       // Actions can do multiple mutations and can also perform asynchronous operations.
       actions: {
-        moveRocks: ({ state, commit, dispatch }, { sourceList, rocks, destList }: RockMovePayload) => {
+        moveRocks: ({ state, commit }, { sourceList, rocks, destList }: RockMovePayload) => {
           const toMoveIds = rocksToIds(rocks)
           // Don't let us move a rock that isn't actually in the source list.
           const movingRocks = state.rockLists[sourceList].filter((rock: Rock) => toMoveIds.includes(rock.id))
@@ -108,6 +111,6 @@ export const initializeStore = (): Store<RockState> => {
     })
 }
 
-export const useStore = () => {
+export const useStore = (): ReturnType<typeof baseUseStore> => {
   return baseUseStore(injectionKey)
 }
