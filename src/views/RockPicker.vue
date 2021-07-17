@@ -28,27 +28,27 @@
           contain
           height="200"
         />
-        <v-card-text class="modal">Wanna polish it?</v-card-text>
+        <v-card-text>
+          Wanna polish it?
+        </v-card-text>
         <v-card-actions>
           <v-col>
             <v-btn
-              class="ma-2"
               color="error"
               dark
               @click.stop="chuckRock(selectedRock)">
-              <v-icon dark left> mdi-cancel </v-icon>
+              <v-icon dark left>mdi-cancel</v-icon>
               Chuck it!
             </v-btn>
           </v-col>
           <v-col class="text-right">
             <v-btn
-              class="ma-2"
               color="primary"
               dark
               @click.stop="rockChosen(selectedRock)"
             >
               Polish it!
-              <v-icon dark right> mdi-checkbox-marked-circle </v-icon>
+              <v-icon dark right>mdi-checkbox-marked-circle</v-icon>
             </v-btn>
           </v-col>
         </v-card-actions>
@@ -58,15 +58,6 @@
 </template>
 
 <style scoped>
-.modal {
-  height: 200px;
-  min-width: 500px;
-  overflow-y: auto;
-}
-
-.button {
-  cursor: pointer;
-}
 </style>
 
 <script lang="ts">
@@ -74,6 +65,7 @@ import { defineComponent } from 'vue'
 import Rock from '@/types/Rock'
 import { makeRock } from '@/lib'
 import { ROCK_DATA } from '@/constants'
+import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 
 declare interface RockPickerData {
   dialog: boolean,
@@ -89,10 +81,10 @@ export default defineComponent({
     },
     rockChosen (rock: Rock) {
       this.$store.commit('addRocks', { rockList: 'tumbling', rocks: [rock] })
-      this.$router.push({ name: 'Placeholder' })
+      this.$router.push({ name: 'Tumbler' })
     },
     assetForRock (rock: Rock) {
-      return ROCK_DATA[rock.type].assets.unpolished
+      return ROCK_DATA[rock.type].assets[POLISH_CYCLES.UNPOLISHED]
     },
     chuckRock (rock: Rock) {
       this.dialog = false
@@ -116,7 +108,7 @@ export default defineComponent({
   },
   created () {
     if (this.tumbling.length) {
-      this.$router.push('Placeholder')
+      this.$router.push({ name: 'Tumbler' })
     }
   },
   computed: {

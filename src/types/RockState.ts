@@ -7,6 +7,7 @@ export interface RockState {
   cycle: POLISH_CYCLES,
   running: boolean,
   nextStop: string,
+  washed: boolean,
   rockLists: {
     tumbling: Rock[],
     outside: Rock[],

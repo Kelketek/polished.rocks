@@ -10,6 +10,7 @@ import { Version } from '@/types/Version'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 import deepEqual from 'fast-deep-equal'
 import Rock from '@/types/Rock'
+import { makeRock } from '@/lib'
 
 declare module '@vue/runtime-core' {
   // Declare our own store state. We actually define the state structure in RockState and then do an empty extension
@@ -38,6 +39,7 @@ export const initialState = (): RockState => ({
   version: currentVersion(),
   running: false,
   cycle: POLISH_CYCLES.COURSE,
+  washed: false,
   rockLists: {
     outside: [],
     polished: [],
@@ -95,6 +97,14 @@ export const initializeStore = (): Store<RockState> => {
         removeRocks: (state: RockState, { rocks, rockList }: {rocks: Rock[], rockList: RockCategory}) => {
           const toRemove = rocksToIds(rocks)
           state.rockLists[rockList] = state.rockLists[rockList].filter((rock: Rock) => !toRemove.includes(rock.id))
+        },
+        forceNeedWash: (state: RockState) => {
+          state.washed = false
+          state.running = false
+          state.rockLists.tumbling = [makeRock()]
+        },
+        setWashed: (state: RockState, value: boolean) => {
+          state.washed = value
         }
       },
       // Actions can do multiple mutations and can also perform asynchronous operations.

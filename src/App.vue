@@ -3,6 +3,7 @@
     <v-main>
       <router-view/>
     </v-main>
+    <div id="footer" />
   </v-app>
 </template>
 

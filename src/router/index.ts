@@ -15,14 +15,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/placeholder',
-    name: 'Placeholder',
-    component: () => import('../views/Placeholder.vue')
+    path: '/tumbler',
+    name: 'Tumbler',
+    component: () => import('../views/Tumbler.vue')
   },
   {
-    path: '/tumbler',
-    name: 'Rock Tumbler',
-    component: () => import('../views/Tumbler.vue')
+    path: '/wash',
+    name: 'Wash',
+    component: () => import('../views/Wash.vue')
   },
   {
     path: '/hackathon',
