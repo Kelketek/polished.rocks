@@ -6,6 +6,8 @@
         Info about what is currently tumbling
       </v-card-title>
       <v-card-text>
+        Current Grit: {{ getCurrentGrit }}
+
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto tempora a quaerat itaque harum veritatis repellat officia fugit commodi numquam laboriosam, omnis, quasi delectus deserunt dolor est perspiciatis ab.
       </v-card-text>
       <v-img
@@ -129,6 +131,9 @@ export default defineComponent({
       if (this.interval === 0) this.updateTimer()
       return this.timerDisplay
     },
+    getCurrentGrit (): POLISH_CYCLES {
+      return this.$store.state.cycle
+    },
     getNextGrit (): POLISH_CYCLES {
       const currentCycle = this.$store.state.cycle
       if (currentCycle === POLISH_CYCLES.UNPOLISHED) return POLISH_CYCLES.COARSE
@@ -141,20 +146,23 @@ export default defineComponent({
     isTumbling (): boolean {
       return parseInt(this.timerDisplay) > 0 && this.$store.state.running
     },
+    isPolished (): boolean {
+      return this.$store.state.cycle === POLISH_CYCLES.POLISH
+    },
     canWash (): boolean {
       // can wash if rock is not tumbling, has not been washed, and is not in polished state
-      return !this.isTumbling && !this.$store.state.washed && !(this.$store.state.cycle === POLISH_CYCLES.POLISH)
+      return !this.isTumbling && !this.$store.state.washed && !this.isPolsihed
     },
     canChangeGrit (): boolean {
       // can change grit if is not tumbling, is washed, and is not in polished state
-      return !this.isTumbling && this.$store.state.washed && !(this.$store.state.cycle === POLISH_CYCLES.POLISH)
+      return !this.isTumbling && this.$store.state.washed && !this.isPolished
     },
     canPolish (): boolean {
       // can polish if rock is not tumbling, grit is one step up from last, is washed, and is not in polished state
-      return false
+      return !this.isTumbling && !this.canChangeGrit && !this.isPolished
     },
     canComplete (): boolean {
-      return true
+      return this.isPolihsed
     }
   }
 })
