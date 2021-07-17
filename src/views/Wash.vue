@@ -98,11 +98,13 @@ export default defineComponent({
     currentStage () { return this.$store.state.cycle }
   },
   created () {
-    this.$store.commit('forceNeedWash')
     const state = this.$store.state
-    if (state.running || state.washed || state.rockLists.tumbling.length) {
+    if (state.running || state.washed) {
       // It's not time to wash.
       this.$router.replace({ name: 'Tumbler' })
+    }
+    if (state.rockLists.tumbling.length === 0) {
+      this.$router.replace({ name: 'PickRocks' })
     }
   },
   data (): {playing: boolean, alternate: boolean} {
