@@ -1,31 +1,5 @@
 import { generateRockPlacement, makeRock } from '@/lib'
 import Rock from '@/types/Rock'
-// import { initialState, retrieveFromStorage } from '@/plugins/store'
-
-/*
-let store: {[key: string]: string|null} = {}
-
-const mockStorage = {
-  getItem: (key: string) => {
-    if (key in store) {
-      return store[key]
-    }
-    return null
-  },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setItem: (key: string, value: any) => {
-    store[key] = `${value}`
-  },
-  removeItem: (key: string) => {
-    delete store[key]
-  },
-  reset () {
-    store = {}
-  }
-}
-
-Object.defineProperty(window, 'localStorage', { value: mockStorage })
-*/
 
 let rocks: Array<Rock> = []
 
