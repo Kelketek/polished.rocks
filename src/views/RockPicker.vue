@@ -91,7 +91,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Rock from '@/types/Rock'
-import { makeRock } from '@/lib'
+import { generateRockPlacement, makeRock } from '@/lib'
 import { ROCK_DATA } from '@/constants'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 
@@ -124,26 +124,16 @@ export default defineComponent({
       this.dialog = false
       this.selectedRock = null
       this.$store.commit('removeRocks', { rockList: 'outside', rocks: [rock] })
-      console.log(rock)
     },
     calculateRockPlacement () {
-      // Generalize  pass in the array of rocks
       var rockSizeAdjustment = window.innerWidth <= 700 ? 0.3 : 0.2
-      var verticalRockBoundaryAdjustment = 0.39
-      var horizontalRockBoundaryAdjustment = 0.24
+      var verticalBoundaryReductionFactor = 0.39
+      var horizontalBoundaryReductionFactor = 0.24
 
       this.rockWidth = (rockSizeAdjustment) * window.innerWidth
-      const randomArray = (length: number, min: number, max: number) => Array(length).fill(0).map(() => Math.round(Math.random() * (max - min) + min))
-      const mapToObject = (arrayToMap: Array<number>) : unknown => {
-        return arrayToMap.reduce((acc: { [key: string]: number}, current: number, index) => {
-          acc[this.rocks[index].id] = current
-          return acc
-        }, {})
-      }
-
-      this.xCoordinates = mapToObject(randomArray(this.rocks.length, 72, window.innerWidth - horizontalRockBoundaryAdjustment * window.innerWidth))
-      this.yCoordinates = mapToObject(randomArray(this.rocks.length, 72, window.innerHeight - verticalRockBoundaryAdjustment * window.innerHeight))
-      this.rockRotation = mapToObject(randomArray(this.rocks.length, -365, 365))
+      this.xCoordinates = generateRockPlacement(this.rocks, 0, window.innerWidth, horizontalBoundaryReductionFactor)
+      this.yCoordinates = generateRockPlacement(this.rocks, 72, window.innerHeight, verticalBoundaryReductionFactor)
+      this.rockRotation = generateRockPlacement(this.rocks, -365, 365, 0)
     }
   },
   watch: {
