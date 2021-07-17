@@ -6,7 +6,8 @@ import { initializeStore, injectionKey } from '@/plugins/store'
 
 declare global {
   interface Window {
-    rocks: ReturnType<typeof createApp>
+    rocks: ReturnType<typeof createApp>,
+    keybuffer: ReturnType<typeof Array>
   }
 }
 
@@ -16,3 +17,5 @@ window.rocks = createApp(App)
   .use(initializeStore(), injectionKey)
 
 window.rocks.mount('#app')
+
+window.keybuffer = []

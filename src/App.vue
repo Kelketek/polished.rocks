@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <v-app theme="dark">
     <v-system-bar color="deep-purple darken-3"></v-system-bar>
@@ -72,6 +73,29 @@ export default defineComponent({
   watch: {
     group () {
       this.drawer = false
+    }
+  },
+  mounted () {
+    window.addEventListener('keydown', this.doCommand)
+  },
+  unmounted () {
+    window.removeEventListener('keydown', this.doCommand)
+  },
+  methods: {
+    doCommand (event: KeyboardEvent) {
+      event = event || window.event
+      const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
+
+      window.keybuffer.push(event.keyCode)
+      if (window.keybuffer.length > konamiCode.length) {
+        // to prevent a big ass keybuffer array
+        window.keybuffer.pop()
+      }
+
+      if (JSON.stringify(window.keybuffer) === JSON.stringify(konamiCode)) {
+        alert('Godmode enabled')
+        this.$store.commit('setGodmode', true)
+      }
     }
   }
 })

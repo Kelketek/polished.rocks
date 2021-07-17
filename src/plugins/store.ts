@@ -45,7 +45,8 @@ export const initialState = (): RockState => ({
     polished: [],
     tumbling: []
   },
-  nextStop: new Date().toISOString()
+  nextStop: new Date().toISOString(),
+  godmode: false
 })
 
 export const migrate = (oldState: {version: Version}): RockState => {
@@ -106,8 +107,28 @@ export const initializeStore = (): Store<RockState> => {
         forceTrophies: (state: RockState) => {
           state.rockLists.polished = [makeRock(), makeRock(), makeRock(), makeRock(), makeRock()]
         },
+        setRunning: (state: RockState, value: boolean) => {
+          state.running = value
+        },
         setWashed: (state: RockState, value: boolean) => {
           state.washed = value
+        },
+        incrementNextStop: (state: RockState, by: number) => {
+          const currentDate = new Date()
+          const nextStopDate = new Date(state.nextStop)
+          nextStopDate.setDate(currentDate.getDate() + by)
+          state.nextStop = nextStopDate.toISOString()
+        },
+        setNextGritCycle: (state: RockState) => {
+          state.cycle = (state.cycle === POLISH_CYCLES.UNPOLISHED ? POLISH_CYCLES.COARSE
+            : state.cycle === POLISH_CYCLES.COARSE ? POLISH_CYCLES.FINE
+              : state.cycle === POLISH_CYCLES.FINE ? POLISH_CYCLES.PREPOLISH
+                : state.cycle === POLISH_CYCLES.PREPOLISH ? POLISH_CYCLES.POLISH
+                  : state.cycle === POLISH_CYCLES.POLISH ? POLISH_CYCLES.UNPOLISHED
+                    : POLISH_CYCLES.UNPOLISHED)
+        },
+        setGodmode: (state: RockState, value: boolean) => {
+          state.godmode = value
         }
       },
       // Actions can do multiple mutations and can also perform asynchronous operations.
