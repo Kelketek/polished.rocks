@@ -1,9 +1,7 @@
 <template>
     <v-card>
       <v-img
-        src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        cover
-        height="200px"
+        :src="image"
       ></v-img>
 
       <v-card-title>
@@ -42,6 +40,10 @@ export default defineComponent({
       required: false
     },
     link: {
+      type: String,
+      required: false
+    },
+    blurb: {
       type: String,
       required: false
     }

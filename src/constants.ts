@@ -67,3 +67,16 @@ export const ROCK_DATA = {
 // These constants map to keys that can be pressed on the keyboard.
 // Up, up, down, down, left, right, left, right, b, a, enter
 export const KONAMI_CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
+
+export const CREW_DATA = {
+  PHOTO_PATH: {
+    FOX: require('./assets/crew_photos/fox.jpg'),
+    JOE: require('./assets/crew_photos/joe.jpg'),
+    JEREMY: require('./assets/crew_photos/jeremy.jpg'),
+    BRAD: require('./assets/crew_photos/brad.jpg'),
+    COREY: require('./assets/crew_photos/corey.jpg'),
+    TAYLOR: require('./assets/crew_photos/taylor.jpg')
+  }
+}
+console.log(CREW_DATA)
+console.log(ROCK_DATA)
