@@ -1,4 +1,16 @@
 <template>
+  <div class="text-center">
+    <!-- Can't factor out the require call into a computed property or webpack will choke on it. -->
+    <img :src="require('../assets/hoseopen.svg')" width="30%" :class="{'d-inline-block': playing, 'd-none': !playing, shrunk: true}" />
+    <img :src="require('../assets/hoseclosed.svg')" width="30%" :class="{'d-inline-block': !playing, 'd-none': playing, shrunk: true}" />
+  </div>
+  <div class="text-center">
+    <img :src="require('../assets/waterstream.svg')" width="30%" :class="{'d-inline-block': !alternate && playing, 'd-none': alternate || !playing, 'waterfall-image': true, shrunk: true}" />
+    <img :src="require('../assets/waterstream2.svg')" width="30%" :class="{'d-inline-block': alternate && playing, 'd-none': !alternate || !playing, 'waterfall-image': true, shrunk: true}" />
+  </div>
+  <div class="footer-vid-container">
+    <video :class="{'position-relative': true, 'footer-vid': true, 'd-none': !playing}" :src="require('../assets/watersplash_VP9.webm')" loop muted autoplay></video>
+  </div>
   <teleport to="#footer">
     <v-footer app>
       <v-container>
@@ -12,7 +24,7 @@
             <v-btn @click="washRocks" :disabled="washed" block color="primary">Perform wash</v-btn>
           </v-col>
           <v-col cols="6">
-            <v-btn v-if="washed && !playing" :to="{name: 'Tumbler'}" block>Return to Tumbler</v-btn>
+            <v-btn v-if="washed && !playing" :to="{name: 'Tumbler'}" color="secondary" block>Return to Tumbler</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -22,10 +34,34 @@
 
 <style>
   .rock img {
-    transition: filter 5s ease;
+    transition: filter 3s ease;
   }
   .unwashed img {
     filter: sepia(100%);
+  }
+  .shrunk {
+    width: 30%;
+  }
+  .waterfall-image {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    height: 50vh;
+  }
+  .footer-vid-container {
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+  }
+  .footer-vid {
+    width: 100vw;
+    z-index: 101;
+    position: relative;
+    opacity: .5;
+    pointer-events: none;
+    margin-top: 25vh;
   }
 </style>
 
@@ -40,10 +76,17 @@ export default defineComponent({
     markWashed () {
       this.playing = false
     },
+    flipWaterfall () {
+      if (this.playing) {
+        setTimeout(this.flipWaterfall, 100)
+      }
+      this.alternate = !this.alternate
+    },
     washRocks () {
       this.playing = true
       this.$store.commit('setWashed', true)
-      setInterval(this.markWashed, 5000)
+      setTimeout(this.markWashed, 3000)
+      setTimeout(this.flipWaterfall, 50)
     },
     rockData (rock: Rock) {
       return ROCK_DATA[rock.type].assets[this.currentStage]
@@ -56,14 +99,16 @@ export default defineComponent({
   },
   created () {
     this.$store.commit('forceNeedWash')
-    // if (state.running || state.washed || state.rockLists.tumbling.length) {
-    //   // It's not time to wash.
-    //   this.$router.replace({ name: 'Tumbler' })
-    // }
+    const state = this.$store.state
+    if (state.running || state.washed || state.rockLists.tumbling.length) {
+      // It's not time to wash.
+      this.$router.replace({ name: 'Tumbler' })
+    }
   },
-  data (): {playing: boolean} {
+  data (): {playing: boolean, alternate: boolean} {
     return {
-      playing: false
+      playing: false,
+      alternate: false
     }
   }
 })
