@@ -1,5 +1,15 @@
 <template>
 <div class="background">
+  <div class="bush left" :style="{ width: rockWidth + 'px'}">
+    <v-img
+      :src="require('../assets/bush.svg')"
+    />
+  </div>
+  <div class="bush right" :style="{ width: rockWidth + 'px'}">
+    <v-img
+      :src="require('../assets/bush.svg')"
+    />
+  </div>
 </div>
 <v-container class="alert-title">
   <v-alert
@@ -7,7 +17,9 @@
       color="primary"
       closable
     >
+    <div class="alert-text text-center">
       Choose A Rock To Polish
+    </div>
     </v-alert>
 </v-container>
   <v-container>
@@ -29,7 +41,6 @@
         >
           <v-img
             :src="assetForRock(rock)"
-            contain
           />
         </div>
       </div>
@@ -69,6 +80,11 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+      <div class="grass">
+    <v-img
+      :src="require('../assets/grass.svg')"
+    />
+  </div>
   </v-container>
 </template>
 
@@ -80,11 +96,104 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
+  background-color: #c2b280;
 }
 
 .alert-title {
   width: 30%;
   min-width: 300px;
+}
+
+.alert-text {
+  width: 100%;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.bush {
+  position: absolute;
+  pointer-events: none;
+}
+
+.bush.left {
+  transform: rotate(150deg);
+  animation: linear infinite alternate;
+  animation-name: bush-left;
+  animation-duration: 20s;
+  -webkit-animation:linear infinite alternate;
+  -webkit-animation-name: bush-left;
+  -webkit-animation-duration: 20s;
+  top: 10px;
+  left: 12px;
+}
+
+@keyframes bush-left {
+  0% { transform: rotate(150deg);}
+  50%{ transform: rotate(160deg);}
+  100%{ transform: rotate(150deg);}
+}
+
+@-webkit-keyframes bush-left {
+  0% { transform: rotate(150deg);}
+  50%{ transform: rotate(160deg);}
+  100%{ transform: rotate(150deg);}
+}
+
+.bush.right {
+  transform: rotate(-170deg);
+  animation: linear infinite alternate;
+  animation-name: bush-right;
+  animation-duration: 20s;
+  -webkit-animation:linear infinite alternate;
+  -webkit-animation-name: bush-right;
+  -webkit-animation-duration: 20s;
+  top: 32px;
+  right: 25px;
+}
+
+@keyframes bush-right {
+  0% { transform: rotate(-170deg);}
+  50%{ transform: rotate(-160deg);}
+  100%{ transform: rotate(-170deg);}
+}
+
+@-webkit-keyframes bush-right {
+  0% { transform: rotate(-170deg);}
+  50%{ transform: rotate(-160deg);}
+  100%{ transform: rotate(-170deg);}
+}
+
+.bush img {
+  height: 0;
+}
+
+.grass {
+  position: fixed;
+  bottom: 0;
+  width:120%;
+  left: -50px;
+  opacity: 90%;
+  animation: linear infinite alternate;
+  animation-name: grass;
+  animation-duration: 10s;
+  -webkit-animation:linear infinite alternate;
+  -webkit-animation-name: grass;
+  -webkit-animation-duration: 10s;
+  pointer-events: none;
+}
+
+@keyframes grass {
+  0% { left: -50px;}
+  50%{ left : -60px;}
+  100%{ left: -50px;}
+}
+
+@-webkit-keyframes grass {
+    0% { left: -50px;}
+    50%{ left : -60px;}
+    100%{ left: -50px;}
 }
 </style>
 
