@@ -74,7 +74,7 @@
 
 <style scoped>
 .background {
-  background-image: url(~@/assets/sand.jpg);
+  background-image: url(~@/assets/sand.svg);
   background-repeat: repeat;
   position: fixed;
   width: 100vw;
