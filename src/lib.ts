@@ -15,3 +15,15 @@ export const makeRock = (): Rock => ({
   createdOn: new Date().toISOString(),
   finishedOn: null
 })
+
+export const generateRockPlacement = (rocks: Array<Rock>, lowerBound: number, upperBound: number, boundaryReductionFactor: number): { [key: string]: number } => {
+  const randomArray = (length: number, min: number, max: number) => Array(length).fill(0).map(() => Math.round(Math.random() * (max - min) + min))
+  const mapToObject = (arrayToMap: Array<number>) : { [key: string]: number } => {
+    return arrayToMap.reduce((acc: { [key: string]: number}, current: number, index) => {
+      acc[rocks[index].id] = current
+      return acc
+    }, {})
+  }
+
+  return mapToObject(randomArray(rocks.length, lowerBound, upperBound - boundaryReductionFactor * upperBound))
+}

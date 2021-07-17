@@ -1,10 +1,27 @@
 <template>
+<div class="background">
+</div>
+<v-container class="alert-title">
+  <v-alert
+      v-model="alert"
+      color="primary"
+      closable
+    >
+      Choose A Rock To Polish
+    </v-alert>
+</v-container>
   <v-container>
-    <h1>Choose A Rock To Polish</h1>
-    <v-row>
-      <v-col v-for="(rock, index) in rocks" :key="index" cols="12" sm="4">
-        <v-card
-          class="pa-2 text-center"
+    <div>
+      <div
+        v-for="(rock, index) in rocks"
+        :key="index"
+        :style="{ width: rockWidth + 'px',
+        position: 'absolute',
+        top: yCoordinates[rock.id] + 'px',
+        left: xCoordinates[rock.id] + 'px',
+        transform: `rotate(${rockRotation[rock.id]}deg)`}">
+        <div
+          class="pa-2 text-center clickable"
           outlined
           tile
           @click.stop="openDialog(rock)"
@@ -13,12 +30,10 @@
           <v-img
             :src="assetForRock(rock)"
             contain
-            height="200"
           />
-          {{ rock.name }}
-        </v-card>
-      </v-col>
-    </v-row>
+        </div>
+      </div>
+    </div>
     <v-dialog v-model="dialog">
       <v-card v-if="selectedRock">
         <v-card-title class="justify-center">This looks like a pretty neat rock.</v-card-title>
@@ -58,18 +73,37 @@
 </template>
 
 <style scoped>
+.background {
+  background-image: url(~@/assets/sand.svg);
+  background-repeat: repeat;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.alert-title {
+  width: 30%;
+  min-width: 300px;
+}
 </style>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Rock from '@/types/Rock'
-import { makeRock } from '@/lib'
+import { generateRockPlacement, makeRock } from '@/lib'
 import { ROCK_DATA } from '@/constants'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 
 declare interface RockPickerData {
   dialog: boolean,
   selectedRock: null|Rock,
+  rockWidth: number,
+  rockHeight: number,
+  xCoordinates: unknown,
+  yCoordinates: unknown,
+  rockRotation: unknown,
+  alert: boolean,
 }
 
 export default defineComponent({
@@ -90,6 +124,16 @@ export default defineComponent({
       this.dialog = false
       this.selectedRock = null
       this.$store.commit('removeRocks', { rockList: 'outside', rocks: [rock] })
+    },
+    calculateRockPlacement () {
+      var rockSizeAdjustment = window.innerWidth <= 700 ? 0.3 : 0.2
+      var verticalBoundaryReductionFactor = 0.39
+      var horizontalBoundaryReductionFactor = 0.24
+
+      this.rockWidth = (rockSizeAdjustment) * window.innerWidth
+      this.xCoordinates = generateRockPlacement(this.rocks, 0, window.innerWidth, horizontalBoundaryReductionFactor)
+      this.yCoordinates = generateRockPlacement(this.rocks, 72, window.innerHeight, verticalBoundaryReductionFactor)
+      this.rockRotation = generateRockPlacement(this.rocks, -365, 365, 0)
     }
   },
   watch: {
@@ -102,6 +146,7 @@ export default defineComponent({
         if (this.tumbling.length === 0) {
           const rocks = [makeRock(), makeRock(), makeRock(), makeRock(), makeRock()]
           this.$store.commit('addRocks', { rockList: 'outside', rocks: rocks })
+          this.calculateRockPlacement()
         }
       }
     }
@@ -120,8 +165,17 @@ export default defineComponent({
   data (): RockPickerData {
     return {
       dialog: false,
-      selectedRock: null
+      selectedRock: null,
+      rockWidth: 0,
+      rockHeight: 0,
+      xCoordinates: null,
+      yCoordinates: null,
+      rockRotation: null,
+      alert: true
     }
+  },
+  mounted () {
+    this.calculateRockPlacement()
   }
 })
 </script>
