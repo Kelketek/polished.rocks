@@ -1,10 +1,18 @@
 <template>
   <v-container>
     <h1>Choose A Rock To Polish</h1>
-    <v-row>
-      <v-col v-for="(rock, index) in rocks" :key="index" cols="12" sm="4">
-        <v-card
-          class="pa-2 text-center"
+    <div>
+      <div
+        v-for="(rock, index) in rocks"
+        :key="index"
+        :style="{ width: rockWidth + 'px',
+        position: 'absolute',
+        top: yCoordinates[rock.id] + 'px',
+        left: xCoordinates[rock.id] + 'px',
+        transform: `rotate(${rockRotation[rock.id]}deg)`}"
+        v-bind:id="'parentdiv'">
+        <div
+          class="pa-2 text-center clickable"
           outlined
           tile
           @click.stop="openDialog(rock)"
@@ -13,12 +21,10 @@
           <v-img
             :src="assetForRock(rock)"
             contain
-            height="200"
           />
-          {{ rock.name }}
-        </v-card>
-      </v-col>
-    </v-row>
+        </div>
+      </div>
+    </div>
     <v-dialog v-model="dialog">
       <v-card v-if="selectedRock">
         <v-card-title class="justify-center">This looks like a pretty neat rock.</v-card-title>
@@ -58,6 +64,7 @@
 </template>
 
 <style scoped>
+
 </style>
 
 <script lang="ts">
@@ -70,6 +77,11 @@ import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 declare interface RockPickerData {
   dialog: boolean,
   selectedRock: null|Rock,
+  rockWidth: number,
+  rockHeight: number,
+  xCoordinates: unknown,
+  yCoordinates: unknown,
+  rockRotation: unknown
 }
 
 export default defineComponent({
@@ -90,6 +102,25 @@ export default defineComponent({
       this.dialog = false
       this.selectedRock = null
       this.$store.commit('removeRocks', { rockList: 'outside', rocks: [rock] })
+      console.log(rock)
+    },
+    calculateRockPlacement () {
+      var rockSizeAdjustment = window.innerWidth <= 700 ? 0.3 : 0.2
+      var rockBoundaryAdjustment = 0.35
+
+      this.rockWidth = (rockSizeAdjustment) * window.innerWidth
+      const randomArray = (length: number, min: number, max: number) => Array(length).fill(0).map(() => Math.round(Math.random() * (max - min) + min))
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const mapToObject = (arrayToMap: Array<number>) : unknown => {
+        return arrayToMap.reduce((acc: { [key: string]: number}, current: number, index) => {
+          acc[this.rocks[index].id] = current
+          return acc
+        }, {})
+      }
+
+      this.xCoordinates = mapToObject(randomArray(this.rocks.length, 72, window.innerWidth - rockBoundaryAdjustment * window.innerWidth))
+      this.yCoordinates = mapToObject(randomArray(this.rocks.length, 72, window.innerHeight - rockBoundaryAdjustment * window.innerHeight))
+      this.rockRotation = mapToObject(randomArray(this.rocks.length, -365, 365))
     }
   },
   watch: {
@@ -102,6 +133,7 @@ export default defineComponent({
         if (this.tumbling.length === 0) {
           const rocks = [makeRock(), makeRock(), makeRock(), makeRock(), makeRock()]
           this.$store.commit('addRocks', { rockList: 'outside', rocks: rocks })
+          this.calculateRockPlacement()
         }
       }
     }
@@ -120,8 +152,16 @@ export default defineComponent({
   data (): RockPickerData {
     return {
       dialog: false,
-      selectedRock: null
+      selectedRock: null,
+      rockWidth: 0,
+      rockHeight: 0,
+      xCoordinates: null,
+      yCoordinates: null,
+      rockRotation: null
     }
+  },
+  mounted () {
+    this.calculateRockPlacement()
   }
 })
 </script>
