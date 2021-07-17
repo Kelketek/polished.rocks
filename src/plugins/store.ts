@@ -45,7 +45,8 @@ export const initialState = (): RockState => ({
     polished: [],
     tumbling: []
   },
-  nextStop: new Date().toISOString()
+  nextStop: new Date().toISOString(),
+  washed: true
 })
 
 export const migrate = (oldState: {version: Version}): RockState => {
