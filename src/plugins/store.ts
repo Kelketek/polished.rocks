@@ -103,6 +103,9 @@ export const initializeStore = (): Store<RockState> => {
           state.running = false
           state.rockLists.tumbling = [makeRock()]
         },
+        forceTrophies: (state: RockState) => {
+          state.rockLists.polished = [makeRock(), makeRock(), makeRock(), makeRock(), makeRock()]
+        },
         setWashed: (state: RockState, value: boolean) => {
           state.washed = value
         }

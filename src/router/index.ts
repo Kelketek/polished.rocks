@@ -28,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/hackathon',
     name: 'Credits',
     component: () => import('../views/Credits.vue')
+  },
+  {
+    path: '/trophy',
+    name: 'Trophy',
+    component: () => import('../views/Trophy.vue')
   }
 ]
 
