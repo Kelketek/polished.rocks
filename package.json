@@ -12,6 +12,7 @@
   "dependencies": {
     "@mdi/font": "5.9.55",
     "@types/uuid": "^8.3.1",
+    "@vue/composition-api": "^1.0.2",
     "balm-cli": "^2.5.1",
     "balm-core": "^3.19.1",
     "core-js": "^3.6.5",
