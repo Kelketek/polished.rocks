@@ -1,6 +1,16 @@
 <template>
+<div class="background">
+</div>
+<v-container class="alert-title">
+  <v-alert
+      v-model="alert"
+      color="primary"
+      closable
+    >
+      Choose A Rock To Polish
+    </v-alert>
+</v-container>
   <v-container>
-    <h1>Choose A Rock To Polish</h1>
     <div>
       <div
         v-for="(rock, index) in rocks"
@@ -9,8 +19,7 @@
         position: 'absolute',
         top: yCoordinates[rock.id] + 'px',
         left: xCoordinates[rock.id] + 'px',
-        transform: `rotate(${rockRotation[rock.id]}deg)`}"
-        v-bind:id="'parentdiv'">
+        transform: `rotate(${rockRotation[rock.id]}deg)`}">
         <div
           class="pa-2 text-center clickable"
           outlined
@@ -64,7 +73,19 @@
 </template>
 
 <style scoped>
+.background {
+  background-image: url(~@/assets/sand.jpg);
+  background-repeat: repeat;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
 
+.alert-title {
+  width: 30%;
+  min-width: 300px;
+}
 </style>
 
 <script lang="ts">
@@ -81,7 +102,8 @@ declare interface RockPickerData {
   rockHeight: number,
   xCoordinates: unknown,
   yCoordinates: unknown,
-  rockRotation: unknown
+  rockRotation: unknown,
+  alert: boolean,
 }
 
 export default defineComponent({
@@ -105,12 +127,13 @@ export default defineComponent({
       console.log(rock)
     },
     calculateRockPlacement () {
+      // Generalize  pass in the array of rocks
       var rockSizeAdjustment = window.innerWidth <= 700 ? 0.3 : 0.2
-      var rockBoundaryAdjustment = 0.35
+      var verticalRockBoundaryAdjustment = 0.39
+      var horizontalRockBoundaryAdjustment = 0.24
 
       this.rockWidth = (rockSizeAdjustment) * window.innerWidth
       const randomArray = (length: number, min: number, max: number) => Array(length).fill(0).map(() => Math.round(Math.random() * (max - min) + min))
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const mapToObject = (arrayToMap: Array<number>) : unknown => {
         return arrayToMap.reduce((acc: { [key: string]: number}, current: number, index) => {
           acc[this.rocks[index].id] = current
@@ -118,8 +141,8 @@ export default defineComponent({
         }, {})
       }
 
-      this.xCoordinates = mapToObject(randomArray(this.rocks.length, 72, window.innerWidth - rockBoundaryAdjustment * window.innerWidth))
-      this.yCoordinates = mapToObject(randomArray(this.rocks.length, 72, window.innerHeight - rockBoundaryAdjustment * window.innerHeight))
+      this.xCoordinates = mapToObject(randomArray(this.rocks.length, 72, window.innerWidth - horizontalRockBoundaryAdjustment * window.innerWidth))
+      this.yCoordinates = mapToObject(randomArray(this.rocks.length, 72, window.innerHeight - verticalRockBoundaryAdjustment * window.innerHeight))
       this.rockRotation = mapToObject(randomArray(this.rocks.length, -365, 365))
     }
   },
@@ -157,7 +180,8 @@ export default defineComponent({
       rockHeight: 0,
       xCoordinates: null,
       yCoordinates: null,
-      rockRotation: null
+      rockRotation: null,
+      alert: true
     }
   },
   mounted () {
