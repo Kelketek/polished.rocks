@@ -61,7 +61,6 @@
           <v-col>
             <v-btn
               color="error"
-              dark
               @click.stop="chuckRock(selectedRock)">
               <v-icon dark left>mdi-cancel</v-icon>
               Chuck it!
@@ -70,7 +69,6 @@
           <v-col class="text-right">
             <v-btn
               color="primary"
-              dark
               @click.stop="rockChosen(selectedRock)"
             >
               Polish it!
