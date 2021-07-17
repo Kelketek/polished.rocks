@@ -214,6 +214,9 @@ export default defineComponent({
     isPolished (): boolean {
       return this.$store.state.cycle === POLISH_CYCLES.POLISH
     },
+    isPolished (): boolean {
+      return this.$store.state.cycle === POLISH_CYCLES.POLISH
+    },
     canWash (): boolean {
       // can wash if rock exists, is not tumbling, has not been washed, and is not in polished state
       return this.rockExists && !this.isRunning && !this.$store.state.washed && !this.isPolished
