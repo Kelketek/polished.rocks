@@ -207,9 +207,9 @@ declare interface RockPickerData {
   selectedRock: null|Rock,
   rockWidth: number,
   rockHeight: number,
-  xCoordinates: unknown,
-  yCoordinates: unknown,
-  rockRotation: unknown,
+  xCoordinates: { [key: string]: number },
+  yCoordinates: { [key: string]: number },
+  rockRotation: { [key: string]: number },
   alert: boolean,
 }
 
@@ -275,9 +275,9 @@ export default defineComponent({
       selectedRock: null,
       rockWidth: 0,
       rockHeight: 0,
-      xCoordinates: null,
-      yCoordinates: null,
-      rockRotation: null,
+      xCoordinates: {},
+      yCoordinates: {},
+      rockRotation: {},
       alert: true
     }
   },
