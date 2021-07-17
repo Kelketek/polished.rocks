@@ -21,3 +21,16 @@ export const ROCK_DATA = {
     }
   }
 }
+
+export const CREW_DATA = {
+  PHOTO_PATH: {
+    FOX: require('./assets/crew_photos/fox.jpg'),
+    JOE: require('./assets/crew_photos/joe.jpg'),
+    JEREMY: require('./assets/crew_photos/jeremy.jpg'),
+    BRAD: require('./assets/crew_photos/brad.jpg'),
+    COREY: require('./assets/crew_photos/corey.jpg'),
+    TAYLOR: require('./assets/crew_photos/taylor.jpg')
+  }
+}
+console.log(CREW_DATA)
+console.log(ROCK_DATA)
