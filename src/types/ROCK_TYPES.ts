@@ -1,5 +1,4 @@
 export enum ROCK_TYPES {
-  AMETHYST = 'Amethyst',
-  ONYX = 'Onyx',
-  SAPPHIRE = 'Sapphire',
+  LAPIZ_LAZULI = 'Lapis Lazuli',
+  JADE = 'Jade',
 }
