@@ -34,67 +34,73 @@
       </audio>
       <v-card-actions>
         <v-row align="center" justify="center">
-          <v-col>
+          <v-col cols="12" v-if="!rockExists">
             <v-btn
               elevation="2"
               color="error"
-              v-if="!rockExists"
               :to="{ name: 'RockPicker' }"
               block>
               <v-icon left>mdi-shovel</v-icon>
               Go pick a dang rock
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="canWash">
             <v-btn
               elevation="2"
               color="secondary"
-              v-if="canWash"
               :to="{ name: 'Wash' }"
               block>
               <v-icon left>mdi-watering-can</v-icon>
               Wash
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="canChangeGrit">
             <v-btn
               elevation="2"
               color="primary"
-              v-if="canChangeGrit"
               @click.stop="updateGritCycle"
               block>
               <v-icon left>mdi-skip-next-circle</v-icon>
               Change grit
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="canPolish">
             <v-btn
               elevation="2"
               color="pink darken-1"
-              v-if="canPolish"
               @click.stop="startPolishing"
               block>
               <v-icon left>mdi-reload</v-icon>
               Polish
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="canMoveToTrophy">
             <v-btn
               elevation="2"
               color="success"
-              v-if="canMoveToTrophy"
               :to="{ name: 'Trophy' }"
               block>
               <v-icon left>mdi-diamond-stone</v-icon>
               Move to Trophy Case
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="godmode && isRunning">
             <v-btn
               elevation="2"
               color="white"
               style="color:black;"
-              v-if="godmode && isRunning"
               @click.stop="godmodeTimeSkip"
               block>
               <v-icon left>mdi-clock-time-four-outline</v-icon>
               Godmode time skip
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="godmode || isRunning">
             <v-btn
               elevation="2"
               color="white"
               style="font-size:2em;color:black;"
-              v-if="godmode || isRunning"
+
               block
               disabled>
                 {{ timer }}
@@ -227,9 +233,3 @@ export default defineComponent({
 })
 
 </script>
-
-<style scoped>
-.v-btn {
-  margin-left: 8px;
-}
-</style>
