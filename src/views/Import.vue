@@ -33,6 +33,16 @@
         @change="importToStore"
         class="file-upload ma-2">
     </v-card>
+    <v-card class="text-center">
+      <v-card-title class="justify-center">Want to completely start over?</v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col @click="clearState">
+            <v-btn color="error">Start over!</v-btn>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>
 
@@ -52,6 +62,7 @@ input[type="file"] {
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { initialState } from '@/plugins/store'
 
 interface HTMLInputEvent extends Event {
     target: HTMLInputElement & EventTarget;
@@ -97,6 +108,10 @@ export default defineComponent({
         this.alertMessage = fileReader.error?.toString() ?? 'Error reading file'
         this.alert = true
       }
+    },
+    clearState () {
+      this.$store.commit('importState', initialState())
+      this.$router.push({ name: 'RockPicker' })
     }
   },
   data () {
