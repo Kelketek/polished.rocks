@@ -49,7 +49,7 @@
     </div>
     <v-dialog v-model="dialog">
       <v-card v-if="selectedRock">
-        <v-card-title class="justify-center">This looks like a pretty neat rock.</v-card-title>
+        <v-card-title class="justify-center">This looks like a pretty neat rock</v-card-title>
         <v-divider></v-divider>
         <v-img
           :src="assetForRock(selectedRock)"
@@ -58,6 +58,9 @@
           class="unwashed"
           height="200"
         />
+        <v-card-text>
+          {{ bioForRock(selectedRock) }}
+        </v-card-text>
         <v-card-text>
           Wanna polish it?
         </v-card-text>
@@ -237,6 +240,9 @@ export default defineComponent({
     },
     assetForRock (rock: Rock) {
       return ROCK_DATA[rock.type].assets[POLISH_CYCLES.UNPOLISHED]
+    },
+    bioForRock (rock: Rock) {
+      return ROCK_DATA[rock.type].bio
     },
     chuckRock (rock: Rock) {
       this.dialog = false

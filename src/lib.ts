@@ -35,6 +35,8 @@ export const generateRockPlacement = (rocks: Array<Rock>, lowerBound: number, up
 
 export const assetForRockAtStage = (rock: Rock, stage: POLISH_CYCLES): string => ROCK_DATA[rock.type].assets[stage]
 
+export const profileForRock = (rock: Rock): string => ROCK_DATA[rock.type].profile
+
 export const godModeListener = (store: Store<RockState>) =>
   (event: KeyboardEvent): void => {
     event = event || window.event
