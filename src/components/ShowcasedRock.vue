@@ -14,7 +14,7 @@
       <v-card-text>
         <v-row>
           <v-col cols="12">
-            Bio?
+            {{ profileForRock(rock) }}
           </v-col>
         </v-row>
         <v-row>
@@ -86,7 +86,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import Rock from '@/types/Rock'
-import { assetForRockAtStage } from '@/lib'
+import { assetForRockAtStage, profileForRock } from '@/lib'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 
 export default defineComponent({
@@ -106,6 +106,7 @@ export default defineComponent({
   },
   methods: {
     assetForRockAtStage,
+    profileForRock,
     shareRock () {
       navigator.share({
         title: `Check out your friend's ${this.rock.type} rock!`,

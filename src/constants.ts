@@ -24,7 +24,9 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.FINE]: require('./assets/lapis_lazuli/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/lapis_lazuli/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/lapis_lazuli/polish.svg')
-    }
+    },
+    bio: 'Is it cheesy to say that you lapis-light up my life. You rock my would! I just wished the barrier reef was as Blue as you.',
+    profile: 'Blue, had been used by civilizations for over 6,500 years, often used as makeup and sculpture, positively influences friendship and honesty'
   },
   [ROCK_TYPES.JADE]: {
     assets: {
@@ -33,7 +35,9 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.FINE]: require('./assets/jade/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/jade/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/jade/polish.svg')
-    }
+    },
+    bio: 'She is a happy-go-lucky, 12 year old girl, and the niece of Jackie Chan.Even know she might be a little bit green!',
+    profile: 'Green, used in jewelry and weapons, as valuable in Diamonds in China, large market for fake jade, believed by some to prevent illness'
   },
   [ROCK_TYPES.OBSIDIAN]: {
     assets: {
@@ -42,7 +46,9 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.FINE]: require('./assets/obsidian/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/obsidian/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/obsidian/polish.svg')
-    }
+    },
+    bio: 'What did the boy volcano say to the girl volcano? Really lave you! Your glasses are blacker than my blackboard to see.',
+    profile: 'Black, Formed in cooled volcano flows, has a glassy luster, harder than window glass, was used to make sharp artifacts such as arrowheads'
   },
   [ROCK_TYPES.MARBLE]: {
     assets: {
@@ -51,7 +57,9 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.FINE]: require('./assets/marble/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/marble/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/marble/polish.svg')
-    }
+    },
+    bio: 'One of the Catholic Church Pope’s hated the male status with the long dongs? But the church loves the little kids one.',
+    profile: 'Actually metamorphosed limestone so not as it appears, Used in classic Greek sculptures, Never stops changing'
   },
   [ROCK_TYPES.RUBY]: {
     assets: {
@@ -60,7 +68,9 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.FINE]: require('./assets/ruby/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/ruby/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/ruby/polish.svg')
-    }
+    },
+    bio: 'I’ll have another Bloody Mary please. Blood coming out of her ears, eyes, and mouth blood coming out of her wherever!',
+    profile: 'Red, worn to protect warriors in battle like the slippers in wizard of oz, nearly as hard as diamonds'
   },
   [ROCK_TYPES.ONYX]: {
     assets: {
@@ -69,7 +79,9 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.FINE]: require('./assets/onyx/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/onyx/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/onyx/polished.svg')
-    }
+    },
+    bio: 'The band concert tonight is allowing flesh-colored earplugs only. These kids have feelings too.',
+    profile: 'Is thought to increase regeneration, happiness, intuition, instincts and also believed to decrease sexual desire and helps to change bad habits.'
   }
 }
 
