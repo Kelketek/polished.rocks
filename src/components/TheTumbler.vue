@@ -81,7 +81,7 @@
               <v-icon left>mdi-clock-time-four-outline</v-icon>
               Godmode time skip
             </v-btn>
-            <p v-if="showTimer">
+            <p v-if="godmode || showTimer">
               {{ timer }}
             </p>
           </v-col>
@@ -97,6 +97,7 @@
 import { defineComponent } from 'vue'
 import { differenceInSeconds, formatRelative } from 'date-fns'
 import { POLISH_CYCLES } from '../types/POLISH_CYCLES'
+import { ROCK_DATA } from '@/constants'
 
 export default defineComponent({
   name: 'TheTumbler',
@@ -106,15 +107,15 @@ export default defineComponent({
       interval: 0
     }
   },
+  mounted () {
+    this.$store.commit('incrementNextStop', 5) // for debugging purposes only
+  },
   methods: {
     updateTimer () {
       clearInterval(this.interval)
       this.interval = setInterval(() => {
         const nextStop = new Date(this.$store.state.nextStop)
         const currentTime = new Date()
-
-        // nextStop.setDate(nextStop.getDate() + 5) // for debugging purposes only
-
         const distance = differenceInSeconds(nextStop, currentTime)
 
         if (distance < 0) {
@@ -141,12 +142,7 @@ export default defineComponent({
     },
     startPolishing () {
       const cycle = this.$store.state.cycle
-      const timeToPolish = (cycle === POLISH_CYCLES.UNPOLISHED ? 7
-        : cycle === POLISH_CYCLES.COARSE ? 7
-          : cycle === POLISH_CYCLES.FINE ? 3
-            : cycle === POLISH_CYCLES.PREPOLISH ? 3
-              : cycle === POLISH_CYCLES.POLISH ? 0
-                : 0)
+      const timeToPolish = ROCK_DATA.POLISH_CYCLE_TIMES[cycle]
 
       this.$store.commit('incrementNextStop', timeToPolish)
       this.$store.commit('setRunning', true)
@@ -162,8 +158,6 @@ export default defineComponent({
     nextStop (): string {
       const nextStop = new Date(this.$store.state.nextStop)
       const currentTime = new Date()
-
-      // nextStop.setDate(nextStop.getDate() + 5) // for debugging purposes only
 
       return formatRelative(nextStop, currentTime)
     },

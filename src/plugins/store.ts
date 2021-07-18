@@ -11,6 +11,7 @@ import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 import deepEqual from 'fast-deep-equal'
 import Rock from '@/types/Rock'
 import { makeRock } from '@/lib'
+import { ROCK_DATA } from '@/constants'
 
 declare module '@vue/runtime-core' {
   // Declare our own store state. We actually define the state structure in RockState and then do an empty extension
@@ -123,12 +124,7 @@ export const initializeStore = (): Store<RockState> => {
           state.nextStop = nextStopDate.toISOString()
         },
         setNextGritCycle: (state: RockState) => {
-          state.cycle = (state.cycle === POLISH_CYCLES.UNPOLISHED ? POLISH_CYCLES.COARSE
-            : state.cycle === POLISH_CYCLES.COARSE ? POLISH_CYCLES.FINE
-              : state.cycle === POLISH_CYCLES.FINE ? POLISH_CYCLES.PREPOLISH
-                : state.cycle === POLISH_CYCLES.PREPOLISH ? POLISH_CYCLES.POLISH
-                  : state.cycle === POLISH_CYCLES.POLISH ? POLISH_CYCLES.UNPOLISHED
-                    : POLISH_CYCLES.UNPOLISHED)
+          state.cycle = ROCK_DATA.POLISH_CYCLE_NEXT[state.cycle as POLISH_CYCLES]
         },
         setGodmode: (state: RockState, value: boolean) => {
           state.godmode = value
