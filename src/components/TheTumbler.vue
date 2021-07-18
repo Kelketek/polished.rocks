@@ -33,7 +33,7 @@
               elevation="2"
               color="error"
               v-if="!rockExists"
-              :to="$router.push({ name: 'RockPicker' })"
+              :to="{ name: 'RockPicker' }"
               block>
               <v-icon left>mdi-shovel</v-icon>
               Go pick a dang rock
@@ -42,7 +42,7 @@
               elevation="2"
               color="secondary"
               v-if="canWash"
-              :to="$router.push({ name: 'Wash' })"
+              :to="{ name: 'Wash' }"
               block>
               <v-icon left>mdi-watering-can</v-icon>
               Wash
@@ -69,7 +69,7 @@
               elevation="2"
               color="success"
               v-if="canMoveToTrophy"
-              :to="$router.push({ name: 'Trophy' })"
+              :to="{ name: 'Trophy' }"
               block>
               <v-icon left>mdi-diamond-stone</v-icon>
               Move to Trophy Case
