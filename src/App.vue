@@ -6,7 +6,6 @@
     </v-app-bar>
     <v-navigation-drawer
         v-model="drawer"
-        absolute
         bottom
         temporary
         app
@@ -71,8 +70,9 @@ export default defineComponent({
           disabled: false
         },
         {
-          title: 'Import',
-          path: '/Import'
+          title: 'Save/Load',
+          path: this.$router.resolve({ name: 'SaveAndLoad' }),
+          disabled: false
         }
       ]
     }

@@ -7,8 +7,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/RockPicker.vue')
   },
   {
-    path: '/import',
-    name: 'Import',
+    path: '/save-and-load',
+    name: 'SaveAndLoad',
     component: () => import('../views/Import.vue')
   },
   {

@@ -24,7 +24,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <showcased-rock v-if="selectedRock" v-model="dialog" :rock="selectedRock" />
+    <showcased-rock v-if="selectedRock" v-model="dialog" :rock="selectedRock" @click:outside="() => { dialog = false }" />
   </v-container>
 </template>
 

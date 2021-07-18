@@ -75,7 +75,7 @@ export const stateSavePlugin = (store: Store<RockState>): void => {
   // eslint-disable-next-line
   store.subscribe((mutation, state) => {
     // Disabling for now for easier debugging.
-    // localStorage.setItem('rockState', JSON.stringify(state))
+    localStorage.setItem('rockState', JSON.stringify(state))
   })
 }
 

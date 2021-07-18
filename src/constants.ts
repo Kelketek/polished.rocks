@@ -105,8 +105,9 @@ export const ROCK_DATA = {
     },
     bio: `<p>I always like to be included. I’m a cut above the rest.
          Pick me and you’ll be the envy of all your friends!</p>`,
-    profile: `<p>Green, majority from Colombia, putting it under your tongue would help you see the future,
-             very rarely without imperfections</p>`
+    profile: `<p class="mb-2">Shiny, sparkly green! The majority are from Colombia. They say putting it under your
+             tongue will help you see the future.</p>
+             <p>Very rarely found without imperfections.</p>`
   },
   [ROCK_TYPES.TOPAZ]: {
     assets: {

@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title class="justify-center">
         <span v-if="shared">Check out your friend's {{ rock.type }} rock!</span>
-        <span v-else>Checkout your {{ rock.type }} rock!</span>
+        <span v-else>Check out your {{ rock.type }} rock!</span>
       </v-card-title>
       <v-divider />
       <v-img

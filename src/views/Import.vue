@@ -18,14 +18,14 @@
         @click.stop="exportFromStore()"
         class="ma-2"
       >
-      Export
+      Save
         <v-icon dark right>mdi-file-download</v-icon>
       </v-btn>
     </v-card>
     <v-card class="text-center">
       <v-card-title class="justify-center">Fill up your rocks</v-card-title>
       <label for="file-upload" class="custom-file-upload v-btn v-btn--elevated v-theme--dark bg-primary v-btn--density-default v-btn--size-default v-btn--variant-contained ma-2">
-        <v-icon dark right>mdi-cloud-upload</v-icon>&nbsp;&nbsp;Upload File
+        <v-icon dark right>mdi-cloud-upload</v-icon>&nbsp;&nbsp;Load saved rocks
       </label>
       <input
         id="file-upload"
