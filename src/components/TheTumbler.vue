@@ -126,11 +126,15 @@ export default defineComponent({
     return {
       timerDisplay: '',
       interval: 0,
-      pause: false
+      pause: true
     }
   },
   mounted () {
     // this.$store.commit('incrementNextStop', 5) // for debugging purposes only
+    this.$store.commit('setGodmode', true)
+  },
+  unmounted () {
+    clearInterval(this.interval)
   },
   watch: {
     isRunning (value: boolean) {
@@ -156,8 +160,10 @@ export default defineComponent({
           if (cycle !== POLISH_CYCLES.POLISH) {
             this.$store.commit('setRunning', false)
             this.$store.commit('setWashed', false)
+            this.$store.commit('setCanChangeGrit', true)
           }
           this.pause = true // pause the timer
+          clearInterval(this.interval)
           return
         }
 
@@ -171,6 +177,7 @@ export default defineComponent({
       }, 1000)
     },
     updateGritCycle () {
+      this.$store.commit('setCanChangeGrit', false)
       this.$store.commit('setNextGritCycle')
     },
     startPolishing () {
@@ -222,12 +229,12 @@ export default defineComponent({
       return this.rockExists && !this.isRunning && !this.$store.state.washed && !this.isPolished
     },
     canChangeGrit (): boolean {
-      // can change grit if rock exists, is not tumbling, is washed, and is not in unpolished or polished state
-      return this.rockExists && !this.isRunning && this.$store.state.washed && !this.isUnpolished && !this.isPolished
+      // can change grit if rock exists, is not tumbling, is washed, and is not in polished state
+      return this.rockExists && !this.isRunning && this.$store.state.canChangeGrit && this.$store.state.washed && !this.isPolished
     },
     canPolish (): boolean {
       // can polish if rock exists, is not tumbling, grit is one step up from last, is washed, and is not in polished state
-      return this.rockExists && !this.isRunning && !this.canChangeGrit && this.$store.state.washed && !this.isPolished
+      return this.rockExists && !this.isRunning && !this.$store.state.canChangeGrit && this.$store.state.washed && !this.isPolished
     },
     canMoveToTrophy (): boolean {
       return this.isPolished

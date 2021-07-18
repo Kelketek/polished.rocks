@@ -41,6 +41,7 @@ export const initialState = (): RockState => ({
   running: false,
   cycle: POLISH_CYCLES.UNPOLISHED,
   washed: false,
+  canChangeGrit: false,
   rockLists: {
     outside: [],
     polished: [],
@@ -119,6 +120,9 @@ export const initializeStore = (): Store<RockState> => {
         },
         setNextStop: (state: RockState, value: Date) => {
           state.nextStop = value.toISOString()
+        },
+        setCanChangeGrit: (state: RockState, value: boolean) => {
+          state.canChangeGrit = value
         },
         incrementNextStop: (state: RockState, by: number) => {
           const currentDate = new Date()
