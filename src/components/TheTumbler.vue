@@ -23,6 +23,7 @@
         loop
         muted
         playsinline
+        ref="tumblerVideo"
       ></video>
       <audio
         class="tumbler-page-audio"
@@ -123,6 +124,16 @@ export default defineComponent({
   },
   mounted () {
     // this.$store.commit('incrementNextStop', 5) // for debugging purposes only
+  },
+  watch: {
+    isRunning (value: boolean) {
+      const video = this.$refs.tumblerVideo as HTMLVideoElement
+      if (value) {
+        video.play()
+      } else {
+        video.pause()
+      }
+    }
   },
   methods: {
     updateTimer () {
