@@ -224,7 +224,8 @@ export default defineComponent({
     },
     rockChosen (rock: Rock) {
       this.$store.commit('addRocks', { rockList: 'tumbling', rocks: [rock] })
-      this.$router.push({ name: 'Tumbler' })
+      this.$store.commit('setWashed', false)
+      this.$router.push({ name: 'Wash' })
     },
     assetForRock (rock: Rock) {
       return ROCK_DATA[rock.type].assets[POLISH_CYCLES.UNPOLISHED]
@@ -235,9 +236,9 @@ export default defineComponent({
       this.$store.commit('removeRocks', { rockList: 'outside', rocks: [rock] })
     },
     calculateRockPlacement () {
-      var rockSizeAdjustment = window.innerWidth <= 700 ? 0.3 : 0.2
-      var verticalBoundaryReductionFactor = 0.39
-      var horizontalBoundaryReductionFactor = 0.24
+      const rockSizeAdjustment = window.innerWidth <= 700 ? 0.3 : 0.2
+      const verticalBoundaryReductionFactor = 0.39
+      const horizontalBoundaryReductionFactor = 0.24
 
       this.rockWidth = (rockSizeAdjustment) * window.innerWidth
       this.xCoordinates = generateRockPlacement(this.rocks, 0, window.innerWidth, horizontalBoundaryReductionFactor)
@@ -262,7 +263,11 @@ export default defineComponent({
   },
   created () {
     if (this.tumbling.length) {
-      this.$router.push({ name: 'Tumbler' })
+      if (this.$store.state.washed) {
+        this.$router.push({ name: 'Tumbler' })
+      } else {
+        this.$router.push({ name: 'Wash' })
+      }
     }
   },
   computed: {

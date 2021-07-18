@@ -18,7 +18,7 @@
       <video
         :src="require('../assets/tumbler.webm')"
         type="video/webm"
-        autoplay
+        :autoplay="isRunning"
         loop
         muted
         playsinline

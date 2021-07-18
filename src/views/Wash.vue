@@ -24,7 +24,7 @@
             <v-btn @click="washRocks" :disabled="washed" block color="primary">Perform wash</v-btn>
           </v-col>
           <v-col cols="6">
-            <v-btn v-if="washed && !playing" :to="{name: 'Tumbler'}" color="secondary" block>Return to Tumbler</v-btn>
+            <v-btn v-if="washed && !playing" :to="{name: 'Tumbler'}" color="secondary" block>Go to Tumbler</v-btn>
           </v-col>
         </v-row>
       </v-container>

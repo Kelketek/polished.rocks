@@ -2,7 +2,9 @@ import Rock from '@/types/Rock'
 import { v4 as uuidv4 } from 'uuid'
 import { ROCK_TYPES } from '@/types/ROCK_TYPES'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
-import { ROCK_DATA } from '@/constants'
+import { KONAMI_CODE, ROCK_DATA } from '@/constants'
+import { Store } from 'vuex'
+import { RockState } from '@/types/RockState'
 
 function randomEnum<T extends {[key: string]: T[keyof T]}> (anEnum: T): T[keyof T] {
   const keys = Object.keys(anEnum) as string[]
@@ -32,3 +34,19 @@ export const generateRockPlacement = (rocks: Array<Rock>, lowerBound: number, up
 }
 
 export const assetForRockAtStage = (rock: Rock, stage: POLISH_CYCLES): string => ROCK_DATA[rock.type].assets[stage]
+
+export const godModeListener = (store: Store<RockState>) =>
+  (event: KeyboardEvent): void => {
+    event = event || window.event
+
+    window.keybuffer.push(event.keyCode)
+    if (window.keybuffer.length > KONAMI_CODE.length) {
+      // to prevent a big ass keybuffer array
+      window.keybuffer.pop()
+    }
+
+    if (JSON.stringify(window.keybuffer) === JSON.stringify(KONAMI_CODE)) {
+      console.log('Godmode enabled.')
+      store.commit('setGodmode', true)
+    }
+  }

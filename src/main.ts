@@ -3,6 +3,7 @@ import vuetify from './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import { initializeStore, injectionKey } from '@/plugins/store'
+import { godModeListener } from '@/lib'
 
 declare global {
   interface Window {
@@ -17,3 +18,5 @@ window.rocks = createApp(App)
   .use(initializeStore(), injectionKey).mount('#app')
 
 window.keybuffer = []
+
+window.addEventListener('keydown', godModeListener(window.rocks.$store))

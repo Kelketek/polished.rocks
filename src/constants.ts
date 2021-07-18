@@ -43,5 +43,27 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.PREPOLISH]: require('./assets/obsidian/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/obsidian/polish.svg')
     }
+  },
+  [ROCK_TYPES.MARBLE]: {
+    assets: {
+      [POLISH_CYCLES.UNPOLISHED]: require('./assets/marble/unpolished.svg'),
+      [POLISH_CYCLES.COARSE]: require('./assets/marble/coarse.svg'),
+      [POLISH_CYCLES.FINE]: require('./assets/marble/fine.svg'),
+      [POLISH_CYCLES.PREPOLISH]: require('./assets/marble/prepolish.svg'),
+      [POLISH_CYCLES.POLISH]: require('./assets/marble/polish.svg')
+    }
+  },
+  [ROCK_TYPES.RUBY]: {
+    assets: {
+      [POLISH_CYCLES.UNPOLISHED]: require('./assets/ruby/unpolished.svg'),
+      [POLISH_CYCLES.COARSE]: require('./assets/ruby/coarse.svg'),
+      [POLISH_CYCLES.FINE]: require('./assets/ruby/fine.svg'),
+      [POLISH_CYCLES.PREPOLISH]: require('./assets/ruby/prepolish.svg'),
+      [POLISH_CYCLES.POLISH]: require('./assets/ruby/polish.svg')
+    }
   }
 }
+
+// These constants map to keys that can be pressed on the keyboard.
+// Up, up, down, down, left, right, left, right, b, a, enter
+export const KONAMI_CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
