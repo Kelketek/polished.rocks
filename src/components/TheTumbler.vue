@@ -16,79 +16,91 @@
   <v-col>
     <v-card>
       <video
+        class="tumbler-page-video"
         :src="require('../assets/tumbler.webm')"
         type="video/webm"
         :autoplay="isRunning"
         loop
         muted
         playsinline
+        ref="tumblerVideo"
       ></video>
-      <audio class="tumbler-page-audio" autoplay loop muted>
+      <audio
+        class="tumbler-page-audio"
+        autoplay
+        loop
+        :muted="!isRunning">
         <source :src="require('../assets/audio/tumbler.mp4')" type="audio/mp4">
       </audio>
       <v-card-actions>
         <v-row align="center" justify="center">
-          <v-col>
+          <v-col cols="12" v-if="!rockExists">
             <v-btn
               elevation="2"
               color="error"
-              v-if="!rockExists"
               :to="{ name: 'RockPicker' }"
               block>
               <v-icon left>mdi-shovel</v-icon>
               Go pick a dang rock
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="canWash">
             <v-btn
               elevation="2"
               color="secondary"
-              v-if="canWash"
               :to="{ name: 'Wash' }"
               block>
               <v-icon left>mdi-watering-can</v-icon>
               Wash
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="canChangeGrit">
             <v-btn
               elevation="2"
               color="primary"
-              v-if="canChangeGrit"
               @click.stop="updateGritCycle"
               block>
               <v-icon left>mdi-skip-next-circle</v-icon>
               Change grit
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="canPolish">
             <v-btn
               elevation="2"
               color="pink darken-1"
-              v-if="canPolish"
               @click.stop="startPolishing"
               block>
               <v-icon left>mdi-reload</v-icon>
               Polish
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="canMoveToTrophy">
             <v-btn
               elevation="2"
               color="success"
-              v-if="canMoveToTrophy"
               :to="{ name: 'Trophy' }"
               block>
               <v-icon left>mdi-diamond-stone</v-icon>
               Move to Trophy Case
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="godmode && isRunning">
             <v-btn
               elevation="2"
               color="white"
               style="color:black;"
-              v-if="godmode && isRunning"
               @click.stop="godmodeTimeSkip"
               block>
               <v-icon left>mdi-clock-time-four-outline</v-icon>
               Godmode time skip
             </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="godmode || isRunning">
             <v-btn
               elevation="2"
               color="white"
               style="font-size:2em;color:black;"
-              v-if="godmode || isRunning"
+
               block
               disabled>
                 {{ timer }}
@@ -118,8 +130,16 @@ export default defineComponent({
   },
   mounted () {
     // this.$store.commit('incrementNextStop', 5) // for debugging purposes only
-    // const tumblerPageAudio!: HTMLAudioElement = document.getElementByClass('tumbler-page-audio')
-    // if (tumblerPageAudio) { tumblerPageAudio.muted = false }
+  },
+  watch: {
+    isRunning (value: boolean) {
+      const video = this.$refs.tumblerVideo as HTMLVideoElement
+      if (value) {
+        video.play()
+      } else {
+        video.pause()
+      }
+    }
   },
   methods: {
     updateTimer () {
@@ -139,10 +159,10 @@ export default defineComponent({
           return
         }
 
-        var days = Math.floor(distance / (60 * 60 * 24))
-        var hours = Math.floor((distance % (60 * 60 * 24)) / (60 * 60))
-        var minutes = Math.floor((distance % (60 * 60)) / 60)
-        var seconds = Math.floor(distance % 60)
+        const days = Math.floor(distance / (60 * 60 * 24))
+        const hours = Math.floor((distance % (60 * 60 * 24)) / (60 * 60))
+        const minutes = Math.floor((distance % (60 * 60)) / 60)
+        const seconds = Math.floor(distance % 60)
 
         this.timerDisplay = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's '
         console.log(this.$store.state.godmode)
@@ -213,9 +233,3 @@ export default defineComponent({
 })
 
 </script>
-
-<style scoped>
-.v-btn {
-  margin-left: 8px;
-}
-</style>
