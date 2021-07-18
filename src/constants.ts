@@ -61,6 +61,15 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.PREPOLISH]: require('./assets/ruby/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/ruby/polish.svg')
     }
+  },
+  [ROCK_TYPES.ONYX]: {
+    assets: {
+      [POLISH_CYCLES.UNPOLISHED]: require('./assets/onyx/unpolished.svg'),
+      [POLISH_CYCLES.COARSE]: require('./assets/onyx/coarse.svg'),
+      [POLISH_CYCLES.FINE]: require('./assets/onyx/fine.svg'),
+      [POLISH_CYCLES.PREPOLISH]: require('./assets/onyx/prepolish.svg'),
+      [POLISH_CYCLES.POLISH]: require('./assets/onyx/polished.svg')
+    }
   }
 }
 

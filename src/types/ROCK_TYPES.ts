@@ -3,5 +3,6 @@ export enum ROCK_TYPES {
   JADE = 'Jade',
   OBSIDIAN = 'Obsidian',
   MARBLE = 'Marble',
-  RUBY = 'Ruby'
+  RUBY = 'Ruby',
+  ONYX = 'Onyx'
 }
