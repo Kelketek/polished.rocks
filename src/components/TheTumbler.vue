@@ -106,15 +106,15 @@ export default defineComponent({
       interval: 0
     }
   },
+  mounted () {
+    this.$store.commit('incrementNextStop', 5) // for debugging purposes only
+  },
   methods: {
     updateTimer () {
       clearInterval(this.interval)
       this.interval = setInterval(() => {
         const nextStop = new Date(this.$store.state.nextStop)
         const currentTime = new Date()
-
-        // nextStop.setDate(nextStop.getDate() + 5) // for debugging purposes only
-
         const distance = differenceInSeconds(nextStop, currentTime)
 
         if (distance < 0) {
@@ -162,8 +162,6 @@ export default defineComponent({
     nextStop (): string {
       const nextStop = new Date(this.$store.state.nextStop)
       const currentTime = new Date()
-
-      // nextStop.setDate(nextStop.getDate() + 5) // for debugging purposes only
 
       return formatRelative(nextStop, currentTime)
     },
