@@ -23,6 +23,9 @@
         muted
         playsinline
       ></video>
+      <audio controls autoplay muted>
+        <source :src="require('../assets/audio/tumbler.mp4')" type="audio/mp4">
+      </audio>
       <v-card-actions>
         <v-row align="center" justify="center">
           <v-col>
@@ -30,7 +33,7 @@
               elevation="2"
               color="error"
               v-if="!rockExists"
-              to="../views/RockPicker.vue"
+              to="../"
               block>
               <v-icon left>mdi-shovel</v-icon>
               Go pick a dang rock
@@ -39,7 +42,7 @@
               elevation="2"
               color="secondary"
               v-if="canWash"
-              to="../views/Wash.vue"
+              to="../wash"
               block>
               <v-icon left>mdi-watering-can</v-icon>
               Wash
@@ -66,7 +69,7 @@
               elevation="2"
               color="success"
               v-if="canMoveToTrophy"
-              to="../views/TrophyCase.vue"
+              to="../trophy"
               block>
               <v-icon left>mdi-diamond-stone</v-icon>
               Move to Trophy Case
@@ -75,15 +78,21 @@
               elevation="2"
               color="white"
               style="color:black;"
-              v-if="godmode"
+              v-if="godmode && isRunning"
               @click.stop="godmodeTimeSkip"
               block>
               <v-icon left>mdi-clock-time-four-outline</v-icon>
               Godmode time skip
             </v-btn>
-            <p v-if="godmode || showTimer">
-              {{ timer }}
-            </p>
+            <v-btn
+              elevation="2"
+              color="white"
+              style="font-size:2em;color:black;"
+              v-if="godmode || isRunning"
+              block
+              disabled>
+                {{ timer }}
+            </v-btn>
           </v-col>
         </v-row>
       </v-card-actions>
@@ -108,7 +117,7 @@ export default defineComponent({
     }
   },
   mounted () {
-    this.$store.commit('incrementNextStop', 5) // for debugging purposes only
+    // this.$store.commit('incrementNextStop', 5) // for debugging purposes only
   },
   methods: {
     updateTimer () {
@@ -174,28 +183,37 @@ export default defineComponent({
     rockExists (): boolean {
       return this.$store.state.rockLists.tumbling.length > 0
     },
+    isRunning (): boolean {
+      return this.$store.state.running
+    },
+    isUnpolished (): boolean {
+      return this.$store.state.cycle === POLISH_CYCLES.UNPOLISHED
+    },
     isPolished (): boolean {
       return this.$store.state.cycle === POLISH_CYCLES.POLISH
     },
     canWash (): boolean {
       // can wash if rock exists, is not tumbling, has not been washed, and is not in polished state
-      return this.rockExists && !this.$store.state.running && !this.$store.state.washed && !this.isPolished
+      return this.rockExists && !this.isRunning && !this.$store.state.washed && !this.isPolished
     },
     canChangeGrit (): boolean {
-      // can change grit if is not tumbling, is washed, and is not in polished state
-      return !this.$store.state.running && this.$store.state.washed && !this.isPolished
+      // can change grit if rock exists, is not tumbling, is washed, and is not in unpolished or polished state
+      return this.rockExists && !this.isRunning && this.$store.state.washed && !this.isUnpolished && !this.isPolished
     },
     canPolish (): boolean {
       // can polish if rock exists, is not tumbling, grit is one step up from last, is washed, and is not in polished state
-      return this.rockExists && !this.$store.state.running && !this.canChangeGrit && !this.isPolished
+      return this.rockExists && !this.isRunning && !this.canChangeGrit && this.$store.state.washed && !this.isPolished
     },
     canMoveToTrophy (): boolean {
       return this.isPolished
-    },
-    showTimer (): boolean {
-      return this.$store.state.running
     }
   }
 })
 
 </script>
+
+<style scoped>
+.v-btn {
+  margin-left: 8px;
+}
+</style>
