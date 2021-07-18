@@ -3,6 +3,13 @@ import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 
 // Might try reconstructing this with a loop later.
 export const ROCK_DATA = {
+  POLISH_CYCLE_TIMES: {
+    [POLISH_CYCLES.UNPOLISHED]: 7,
+    [POLISH_CYCLES.COARSE]: 7,
+    [POLISH_CYCLES.FINE]: 3,
+    [POLISH_CYCLES.PREPOLISH]: 3,
+    [POLISH_CYCLES.POLISH]: 0
+  },
   [ROCK_TYPES.LAPIZ_LAZULI]: {
     assets: {
       [POLISH_CYCLES.UNPOLISHED]: require('./assets/unpolished1.svg'),
