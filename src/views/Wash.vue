@@ -18,18 +18,18 @@
     <v-footer app>
       <v-container>
         <v-row>
-          <v-col v-for="rock in rocks" :key="rock.id" cols="4" md="3" lg="2">
-            <v-img :src="rockData(rock)" :class="{unwashed: !washed, rock: true}" contain aspect-ratio="1" />
+          <v-col v-for="rock in rocks" :key="rock.id">
+            <v-img :src="rockData(rock)" :class="{unwashed: !washed, rock: true}" contain aspect-ratio="1" max-height="20vh" />
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="6">
+          <v-col cols="12" v-if="!washed || playing">
             <v-btn @click="washRocks" :disabled="washed" block color="primary">Perform wash</v-btn>
           </v-col>
-          <v-col cols="6" v-if="washed && !playing && !finished">
+          <v-col cols="12" v-if="washed && !playing && !finished">
             <v-btn :to="{name: 'Tumbler'}" color="secondary" block>Go to Tumbler</v-btn>
           </v-col>
-          <v-col cols="6" v-if="finished">
+          <v-col cols="12" v-if="finished && !playing">
             <v-btn v-if="finished" color="success" @click="moveToTrophy" block>Add to Trophies</v-btn>
           </v-col>
         </v-row>
@@ -73,7 +73,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ROCK_DATA } from '@/constants'
+import { ROCK_DATA, TARGET_ROCK_COUNT } from '@/constants'
 import Rock from '@/types/Rock'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 import { collectTrophies } from '@/lib'
@@ -132,7 +132,7 @@ export default defineComponent({
       // It's not time to wash.
       this.$router.replace({ name: 'Tumbler' })
     }
-    if (state.rockLists.tumbling.length === 0) {
+    if (state.rockLists.tumbling.length < TARGET_ROCK_COUNT) {
       this.$router.replace({ name: 'RockPicker' })
     }
   },

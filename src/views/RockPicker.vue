@@ -212,7 +212,7 @@
 import { defineComponent } from 'vue'
 import Rock from '@/types/Rock'
 import { generateRockPlacement, makeRock } from '@/lib'
-import { ROCK_DATA } from '@/constants'
+import { ROCK_DATA, TARGET_ROCK_COUNT } from '@/constants'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 
 declare interface RockPickerData {
@@ -235,8 +235,10 @@ export default defineComponent({
     },
     rockChosen (rock: Rock) {
       this.$store.commit('addRocks', { rockList: 'tumbling', rocks: [rock] })
-      this.$store.commit('setWashed', false)
-      this.$router.push({ name: 'Wash' })
+      if (this.tumbling.length >= TARGET_ROCK_COUNT) {
+        this.$router.push({ name: 'Wash' })
+      }
+      this.dialog = false
     },
     assetForRock (rock: Rock) {
       return ROCK_DATA[rock.type].assets[POLISH_CYCLES.NONE]
@@ -267,7 +269,7 @@ export default defineComponent({
         if (length) {
           return
         }
-        if (this.tumbling.length === 0) {
+        if (this.rocks.length === 0) {
           const rocks = [makeRock(), makeRock(), makeRock(), makeRock(), makeRock()]
           this.$store.commit('addRocks', { rockList: 'outside', rocks: rocks })
           this.calculateRockPlacement()
@@ -276,7 +278,7 @@ export default defineComponent({
     }
   },
   created () {
-    if (this.tumbling.length) {
+    if (this.tumbling.length >= TARGET_ROCK_COUNT) {
       if (this.$store.state.washed) {
         this.$router.push({ name: 'Tumbler' })
       } else {

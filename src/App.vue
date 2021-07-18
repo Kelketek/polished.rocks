@@ -52,7 +52,7 @@ export default defineComponent({
         {
           title: 'Choose Rocks',
           path: this.$router.resolve({ name: 'RockPicker' }),
-          disabled: !!this.$store.state.rockLists.tumbling.length
+          disabled: this.$store.state.rockLists.tumbling.length >= 3
         },
         {
           title: 'Tumble Rocks',

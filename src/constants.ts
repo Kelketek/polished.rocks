@@ -142,6 +142,8 @@ export const ROCK_DATA = {
 // Up, up, down, down, left, right, left, right, b, a, enter
 export const KONAMI_CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
 
+export const TARGET_ROCK_COUNT = 3
+
 export const CREW_DATA = {
   FOX: {
     PHOTO_PATH: require('./assets/crew_photos/fox.jpg'),

@@ -20,7 +20,7 @@
       <v-col cols="12" sm="8" offset-sm="1" md="6" offset-md="3" lg="4" offset-lg="4">
         <v-btn color="error" block :to="{ name: 'RockPicker' }">
           <v-icon left>mdi-shovel</v-icon>
-          Go pick a dang rock
+          Go pick some dang rocks
         </v-btn>
       </v-col>
     </v-row>

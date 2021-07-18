@@ -1,10 +1,6 @@
 <template>
   <v-container>
-    <v-row class="align-center">
-      <v-col class="align-center">
-        <TheTumbler />
-      </v-col>
-    </v-row>
+    <TheTumbler />
   </v-container>
 </template>
 

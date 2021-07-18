@@ -1,7 +1,6 @@
 <template>
-
 <v-row>
-  <v-col>
+  <v-col cols="12" md="8" lg="6" offset-lg="3" offset-md="2">
     <v-card>
       <v-card-title>
         Next Stop: {{ nextStop }}
@@ -13,7 +12,7 @@
   </v-col>
 </v-row>
 <v-row>
-  <v-col>
+  <v-col cols="12" md="8" lg="6" offset-lg="3" offset-md="2">
     <v-card>
       <video
         class="tumbler-page-video"
@@ -41,7 +40,7 @@
               :to="{ name: 'RockPicker' }"
               block>
               <v-icon left>mdi-shovel</v-icon>
-              Go pick a dang rock
+              Go pick some dang rocks
             </v-btn>
           </v-col>
           <v-col cols="12" v-if="canWash">
@@ -227,7 +226,7 @@ export default defineComponent({
       return this.$store.state.cycle
     },
     rockExists (): boolean {
-      return this.$store.state.rockLists.tumbling.length > 0
+      return this.$store.state.rockLists.tumbling.length >= 3
     },
     cycleCompleted (): boolean {
       return this.$store.state.cycleCompleted
