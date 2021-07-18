@@ -113,6 +113,9 @@ export const initializeStore = (): Store<RockState> => {
         setWashed: (state: RockState, value: boolean) => {
           state.washed = value
         },
+        setNextStop: (state: RockState, value: Date) => {
+          state.nextStop = value.toISOString()
+        },
         incrementNextStop: (state: RockState, by: number) => {
           const currentDate = new Date()
           const nextStopDate = new Date(state.nextStop)

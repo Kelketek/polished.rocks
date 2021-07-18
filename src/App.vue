@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <v-app theme="dark">
     <v-system-bar color="deep-purple darken-3"></v-system-bar>
