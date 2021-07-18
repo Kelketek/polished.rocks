@@ -7,7 +7,6 @@ import { godModeListener } from '@/lib'
 
 declare global {
   interface Window {
-    keybuffer: ReturnType<typeof Array>
     rocks: ComponentPublicInstance
   }
 }
@@ -16,7 +15,5 @@ window.rocks = createApp(App)
   .use(router)
   .use(vuetify)
   .use(initializeStore(), injectionKey).mount('#app')
-
-window.keybuffer = []
 
 window.addEventListener('keydown', godModeListener(window.rocks.$store))

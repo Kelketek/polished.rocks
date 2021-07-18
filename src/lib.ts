@@ -37,18 +37,21 @@ export const assetForRockAtStage = (rock: Rock, stage: POLISH_CYCLES): string =>
 
 export const profileForRock = (rock: Rock): string => ROCK_DATA[rock.type].profile
 
-export const godModeListener = (store: Store<RockState>) =>
-  (event: KeyboardEvent): void => {
+export const godModeListener = (store: Store<RockState>): (event: KeyboardEvent) => void => {
+  const keyBuffer: number[] = []
+  return (event: KeyboardEvent): void => {
     event = event || window.event
 
-    window.keybuffer.push(event.keyCode)
-    if (window.keybuffer.length > KONAMI_CODE.length) {
-      // to prevent a big ass keybuffer array
-      window.keybuffer.pop()
+    keyBuffer.push(event.keyCode)
+    if (keyBuffer.length > KONAMI_CODE.length) {
+      // to prevent a big ass keybuffer array, remove the first item from the array each time we add a new one
+      // if it's longer than we need to observe to match the code.
+      keyBuffer.shift()
     }
 
-    if (JSON.stringify(window.keybuffer) === JSON.stringify(KONAMI_CODE)) {
+    if (JSON.stringify(keyBuffer) === JSON.stringify(KONAMI_CODE)) {
       console.log('Godmode enabled.')
       store.commit('setGodmode', true)
     }
   }
+}

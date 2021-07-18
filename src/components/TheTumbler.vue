@@ -92,15 +92,24 @@
               @click.stop="godmodeTimeSkip"
               block>
               <v-icon left>mdi-clock-time-four-outline</v-icon>
-              Godmode time skip
+              Rock of Ages Time Skip
             </v-btn>
           </v-col>
-          <v-col cols="12" v-if="godmode || isRunning">
+          <v-col cols="12" v-else-if="godmode && !isRunning">
+            <v-btn
+              elevation="2"
+              color="white"
+              style="color:black;"
+              disabled
+              block>
+              Rock of Ages Mode Enabled
+            </v-btn>
+          </v-col>
+          <v-col cols="12" v-if="isRunning">
             <v-btn
               elevation="2"
               color="white"
               style="font-size:2em;color:black;"
-
               block
               disabled>
                 {{ timer }}
@@ -154,7 +163,7 @@ export default defineComponent({
         const currentTime = new Date()
         const distance = differenceInSeconds(nextStop, currentTime)
 
-        if (distance < 0) {
+        if (distance <= 0) {
           this.timerDisplay = 'Complete'
           const cycle = this.$store.state.cycle
           if (cycle !== POLISH_CYCLES.POLISH) {
@@ -189,7 +198,7 @@ export default defineComponent({
     godmodeTimeSkip () {
       // sets next stop to be 10 seconds from now
       const newTime = new Date()
-      newTime.setSeconds(newTime.getSeconds() + 10)
+      newTime.setSeconds(newTime.getSeconds() + 5)
       this.$store.commit('setNextStop', newTime)
     },
     moveToTrophy () {
@@ -210,7 +219,7 @@ export default defineComponent({
       return this.$store.state.godmode
     },
     timer (): string {
-      if (this.interval === 0 && this.pause === false) this.updateTimer()
+      if (this.interval === 0 && !this.pause) this.updateTimer()
       return this.timerDisplay
     },
     getCurrentGrit (): POLISH_CYCLES {
@@ -230,7 +239,7 @@ export default defineComponent({
     },
     canWash (): boolean {
       // can wash if rock exists, is not tumbling, has not been washed, and is not in polished state
-      return this.rockExists && !this.isRunning && !this.$store.state.washed && !this.isPolished
+      return this.rockExists && !this.isRunning && !this.$store.state.washed
     },
     canChangeGrit (): boolean {
       // can change grit if rock exists, is not tumbling, is washed, and is not in polished state
@@ -238,10 +247,10 @@ export default defineComponent({
     },
     canPolish (): boolean {
       // can polish if rock exists, is not tumbling, grit is one step up from last, is washed, and is not in polished state
-      return this.rockExists && !this.isRunning && !this.$store.state.canChangeGrit && this.$store.state.washed && !this.isPolished
+      return this.rockExists && !this.isRunning && !this.$store.state.canChangeGrit && this.$store.state.washed && !(this.isPolished && !this.canWash)
     },
     canMoveToTrophy (): boolean {
-      return this.isPolished
+      return this.isPolished && !this.canWash
     }
   }
 })
