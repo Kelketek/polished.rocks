@@ -79,6 +79,7 @@
 <style scoped>
   .share-link-input {
     color: lightgray;
+    width: 100%;
   }
 </style>
 

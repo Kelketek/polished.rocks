@@ -41,6 +41,7 @@
         >
           <v-img
             :src="assetForRock(rock)"
+            class="unwashed"
             aspect-ratio="1"
           />
         </div>
@@ -54,6 +55,7 @@
           :src="assetForRock(selectedRock)"
           contain
           aspect-ratio="1"
+          class="unwashed"
           height="200"
         />
         <v-card-text>
@@ -194,6 +196,12 @@
     0% { left: -50px;}
     50%{ left : -60px;}
     100%{ left: -50px;}
+}
+</style>
+
+<style>
+.unwashed img {
+  filter: sepia(100%);
 }
 </style>
 
