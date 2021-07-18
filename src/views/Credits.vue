@@ -45,9 +45,6 @@ export default defineComponent({
 </script>
 
 <style>
-body {
-  margin: 1em !important;
-}
 .pun-blurb {
   margin: 0;
 }

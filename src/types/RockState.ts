@@ -8,6 +8,7 @@ export interface RockState {
   running: boolean,
   nextStop: string,
   washed: boolean,
+  godmode: boolean,
   rockLists: {
     tumbling: Rock[],
     outside: Rock[],
