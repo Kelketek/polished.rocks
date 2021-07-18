@@ -67,3 +67,56 @@ export const ROCK_DATA = {
 // These constants map to keys that can be pressed on the keyboard.
 // Up, up, down, down, left, right, left, right, b, a, enter
 export const KONAMI_CODE = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
+
+export const CREW_DATA = {
+  FOX: {
+    PHOTO_PATH: require('./assets/crew_photos/fox.jpg'),
+    BLURB: 'Fox Piacenti is a software solutions architect and generalist. He runs Artconomy.com, a website that makes it easy for you to get art commissioned of your original characters. His bachelor party was to make the app you’re looking at in less than three days! Fox enjoys ambitious projects, art, software, and thoughtful conversations about power structures and organizational design.',
+    TITLE: 'Founder & CEO',
+    LINK: 'https://www.artconomy.com',
+    FIRST_NAME: 'Fox',
+    LAST_NAME: 'Piacenti'
+  },
+  JOE: {
+    PHOTO_PATH: require('./assets/crew_photos/joe.jpg'),
+    BLURB: 'Joseph is a career musical artist, producer, and teacher. His music is available across streaming platforms under the moniker “Joseph Daniel”. Joseph’s hobbies include video games, weight lifting, and sarcasm.',
+    TITLE: 'Animator & Sound Engineer',
+    LINK: 'https://www.instagram.com/thejosephdaniel',
+    FIRST_NAME: 'Joseph Daniel',
+    LAST_NAME: 'Piacenti'
+  },
+  JEREMY: {
+    PHOTO_PATH: require('./assets/crew_photos/jeremy.jpg'),
+    BLURB: 'A barker of incredibly unhealthy food that is so addictive that parents can’t help feeding it to their children and parents themselves can’t help but eat it too. It’s sugar is more addictive than cocaine, It’s the most legal drug.',
+    TITLE: 'Visual Artist',
+    LINK: 'https://polished.rocks',
+    FIRST_NAME: 'Jeremy',
+    LAST_NAME: 'Evans'
+  },
+  BRAD: {
+    PHOTO_PATH: require('./assets/crew_photos/brad.jpg'),
+    BLURB: 'Bradley is a professional photographer who is always tired. He likes experimental grindcore, intentionally boring video games, and checking your vibe.',
+    TITLE: 'Designer',
+    LINK: 'https://polished.rocks',
+    FIRST_NAME: 'Brad',
+    LAST_NAME: 'Rogers'
+  },
+  COREY: {
+    PHOTO_PATH: require('./assets/crew_photos/corey.jpg'),
+    BLURB: 'Corey is a builder. He enjoys making his life better through software, home automation, IoT devices, and general construction. Corey’s recent projects include this app, a device to keep cats away from Christmas trees, and a closet renovation.',
+    TITLE: 'Software Engineer',
+    LINK: 'https://www.github.com/cjames9001',
+    FIRST_NAME: 'Corey',
+    LAST_NAME: 'Pon'
+  },
+  TAYLOR: {
+    PHOTO_PATH: require('./assets/crew_photos/taylor.jpg'),
+    BLURB: 'Taylor has been working as a software engineer for 3 years.  Before that, he built particle accelerators and underwater computers as an electronics engineer.  Taylor is always striving to challenge himself both professionally and in his personal life.  His interests include robots, gummy bears, and sushi.',
+    TITLE: 'Software Engineer',
+    LINK: 'https://github.com/taylorglenn',
+    FIRST_NAME: 'Taylor',
+    LAST_NAME: 'Glenn'
+  }
+}
+console.log(CREW_DATA)
+console.log(ROCK_DATA)

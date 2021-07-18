@@ -1,9 +1,7 @@
 <template>
     <v-card>
       <v-img
-        src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-        cover
-        height="200px"
+        :src="image"
       ></v-img>
 
       <v-card-title>
@@ -14,7 +12,7 @@
           {{ title }}
         </v-card-subtitle>
         <v-divider class="py-2" />
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui voluptates magnam ratione mollitia. Tempore quam repudiandae autem ex dolor adipisci corrupti molestias ipsa architecto sed, aliquid nemo ad quas quod!</p>
+        <p>{{ blurb }}</p>
       </v-card-text>
     </v-card>
 </template>
@@ -42,6 +40,10 @@ export default defineComponent({
       required: false
     },
     link: {
+      type: String,
+      required: false
+    },
+    blurb: {
       type: String,
       required: false
     }

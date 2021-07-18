@@ -14,7 +14,7 @@
     <v-divider class="py-2" />
     <v-row>
       <v-col cols="4" v-for="(item, index) in items" :key="index">
-        <Credit :firstName="item.firstName" :lastName="item.lastName" :title="item.title" :link="item.link" />
+        <Credit :firstName="item.firstName" :lastName="item.lastName" :title="item.title" :link="item.link" :image="item.image" :blurb="item.blurb" />
       </v-col>
     </v-row>
   </v-container>
@@ -24,6 +24,8 @@
 
 import { defineComponent } from 'vue'
 import Credit from '../components/Credit.vue'
+import { CREW_DATA } from '@/constants'
+
 export default defineComponent({
   name: 'Credits',
   components: {
@@ -32,12 +34,12 @@ export default defineComponent({
   data () {
     return {
       items: [
-        { firstName: 'Fox', lastName: 'Piacenti', title: 'Founder & CEO', link: 'https://www.artconomy.com' },
-        { firstName: 'Joseph', lastName: 'Piacenti', title: 'Animator & Sound Engineer' },
-        { firstName: 'Jeremy', lastName: 'Evans', title: 'Visual Artist' },
-        { firstName: 'Brad', lastName: 'Rogers', title: 'Designer' },
-        { firstName: 'Corey', lastName: 'Pon', title: 'Software Engineer', link: 'https://www.github.com/cjames9001' },
-        { firstName: 'Taylor', lastName: 'Glenn', title: 'Software Engineer' }
+        { firstName: CREW_DATA.FOX.FIRST_NAME, lastName: CREW_DATA.FOX.LAST_NAME, title: CREW_DATA.FOX.TITLE, link: CREW_DATA.FOX.LINK, image: CREW_DATA.FOX.PHOTO_PATH, blurb: CREW_DATA.FOX.BLURB },
+        { firstName: CREW_DATA.JOE.FIRST_NAME, lastName: CREW_DATA.JOE.LAST_NAME, title: CREW_DATA.JOE.TITLE, link: CREW_DATA.JOE.LINK, image: CREW_DATA.JOE.PHOTO_PATH, blurb: CREW_DATA.JOE.BLURB },
+        { firstName: CREW_DATA.JEREMY.FIRST_NAME, lastName: CREW_DATA.JEREMY.LAST_NAME, title: CREW_DATA.JEREMY.TITLE, link: CREW_DATA.JEREMY.LINK, image: CREW_DATA.JEREMY.PHOTO_PATH, blurb: CREW_DATA.JEREMY.BLURB },
+        { firstName: CREW_DATA.BRAD.FIRST_NAME, lastName: CREW_DATA.BRAD.LAST_NAME, title: CREW_DATA.BRAD.TITLE, link: CREW_DATA.BRAD.LINK, image: CREW_DATA.BRAD.PHOTO_PATH, blurb: CREW_DATA.BRAD.BLURB },
+        { firstName: CREW_DATA.COREY.FIRST_NAME, lastName: CREW_DATA.COREY.LAST_NAME, title: CREW_DATA.COREY.TITLE, link: CREW_DATA.COREY.LINK, image: CREW_DATA.COREY.PHOTO_PATH, blurb: CREW_DATA.COREY.BLURB },
+        { firstName: CREW_DATA.TAYLOR.FIRST_NAME, lastName: CREW_DATA.TAYLOR.LAST_NAME, title: CREW_DATA.TAYLOR.TITLE, link: CREW_DATA.TAYLOR.LINK, image: CREW_DATA.TAYLOR.PHOTO_PATH, blurb: CREW_DATA.TAYLOR.BLURB }
       ]
     }
   }
