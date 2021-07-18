@@ -72,6 +72,7 @@
 import { defineComponent } from 'vue'
 import { ROCK_DATA } from '@/constants'
 import Rock from '@/types/Rock'
+import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 
 export default defineComponent({
   name: 'Wash.vue',
@@ -88,6 +89,9 @@ export default defineComponent({
     washRocks () {
       this.playing = true
       this.$store.commit('setWashed', true)
+      if (this.$store.state.cycle !== POLISH_CYCLES.POLISH) {
+        this.$store.commit('setCanChangeGrit', true)
+      }
       setTimeout(this.markWashed, 3000)
       setTimeout(this.flipWaterfall, 50)
     },

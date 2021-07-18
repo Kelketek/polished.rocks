@@ -18,10 +18,10 @@
         <v-row>
           <v-col cols="3">
             <h6 class="text-center">
-              {{ POLISH_CYCLES.UNPOLISHED }}
+              {{ POLISH_CYCLES.NONE }}
             </h6>
             <v-img
-              :src="assetForRockAtStage(rock, POLISH_CYCLES.UNPOLISHED)"
+              :src="assetForRockAtStage(rock, POLISH_CYCLES.NONE)"
               aspect-ratio="1"
             />
           </v-col>

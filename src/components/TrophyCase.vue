@@ -42,9 +42,6 @@ export default defineComponent({
       return ROCK_DATA[rock.type]
     }
   },
-  created () {
-    this.$store.commit('forceTrophies')
-  },
   data (): TrophyCaseData {
     return {
       dialog: false,

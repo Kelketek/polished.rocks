@@ -4,14 +4,14 @@ import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 // Might try reconstructing this with a loop later.
 export const ROCK_DATA = {
   POLISH_CYCLE_NEXT: {
-    [POLISH_CYCLES.UNPOLISHED]: POLISH_CYCLES.COARSE,
+    [POLISH_CYCLES.NONE]: POLISH_CYCLES.COARSE,
     [POLISH_CYCLES.COARSE]: POLISH_CYCLES.FINE,
     [POLISH_CYCLES.FINE]: POLISH_CYCLES.PREPOLISH,
     [POLISH_CYCLES.PREPOLISH]: POLISH_CYCLES.POLISH,
-    [POLISH_CYCLES.POLISH]: POLISH_CYCLES.UNPOLISHED
+    [POLISH_CYCLES.POLISH]: POLISH_CYCLES.NONE
   },
   POLISH_CYCLE_TIMES: {
-    [POLISH_CYCLES.UNPOLISHED]: 7,
+    [POLISH_CYCLES.NONE]: 7,
     [POLISH_CYCLES.COARSE]: 7,
     [POLISH_CYCLES.FINE]: 3,
     [POLISH_CYCLES.PREPOLISH]: 3,
@@ -19,7 +19,7 @@ export const ROCK_DATA = {
   },
   [ROCK_TYPES.LAPIZ_LAZULI]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/unpolished1.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/unpolished1.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/lapis_lazuli/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/lapis_lazuli/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/lapis_lazuli/prepolish.svg'),
@@ -32,7 +32,7 @@ export const ROCK_DATA = {
   },
   [ROCK_TYPES.JADE]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/unpolished1.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/unpolished1.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/jade/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/jade/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/jade/prepolish.svg'),
@@ -45,7 +45,7 @@ export const ROCK_DATA = {
   },
   [ROCK_TYPES.OBSIDIAN]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/unpolished2.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/unpolished2.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/obsidian/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/obsidian/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/obsidian/prepolish.svg'),
@@ -59,7 +59,7 @@ export const ROCK_DATA = {
   },
   [ROCK_TYPES.MARBLE]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/marble/unpolished.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/marble/unpolished.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/marble/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/marble/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/marble/prepolish.svg'),
@@ -71,7 +71,7 @@ export const ROCK_DATA = {
   },
   [ROCK_TYPES.RUBY]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/ruby/unpolished.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/ruby/unpolished.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/ruby/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/ruby/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/ruby/prepolish.svg'),
@@ -84,7 +84,7 @@ export const ROCK_DATA = {
   },
   [ROCK_TYPES.ONYX]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/onyx/unpolished.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/onyx/unpolished.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/onyx/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/onyx/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/onyx/prepolish.svg'),
@@ -97,7 +97,7 @@ export const ROCK_DATA = {
   },
   [ROCK_TYPES.EMERALD]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/emerald/unpolished.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/emerald/unpolished.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/emerald/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/emerald/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/emerald/prepolish.svg'),
@@ -110,19 +110,19 @@ export const ROCK_DATA = {
   },
   [ROCK_TYPES.TOPAZ]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/topaz/unpolished.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/topaz/unpolished.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/topaz/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/topaz/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/topaz/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/topaz/polished.svg')
     },
-    bio: `<p>Who you callin' yella?</p>`,
+    bio: '<p>Who you callin\' yella?</p>',
     profile: `<p>It is believed to attract wealth and money. This gemstone is also said to bring good fortune especially
               in the form of gold. Now that's a deal everyone would love!</p>`
   },
   [ROCK_TYPES.GYPSUM]: {
     assets: {
-      [POLISH_CYCLES.UNPOLISHED]: require('./assets/gypsum/unpolished.svg'),
+      [POLISH_CYCLES.NONE]: require('./assets/gypsum/unpolished.svg'),
       [POLISH_CYCLES.COARSE]: require('./assets/gypsum/coarse.svg'),
       [POLISH_CYCLES.FINE]: require('./assets/gypsum/fine.svg'),
       [POLISH_CYCLES.PREPOLISH]: require('./assets/gypsum/prepolish.svg'),
@@ -191,5 +191,3 @@ export const CREW_DATA = {
     LAST_NAME: 'Glenn'
   }
 }
-console.log(CREW_DATA)
-console.log(ROCK_DATA)

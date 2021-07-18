@@ -1,5 +1,5 @@
 export enum POLISH_CYCLES {
-  UNPOLISHED = 'Unpolished',
+  NONE = 'None',
   COARSE = 'Coarse',
   FINE = 'Fine',
   PREPOLISH = 'Prepolish',

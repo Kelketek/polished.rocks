@@ -39,7 +39,7 @@ export const initialState = (): RockState => ({
   // the version should be changed.
   version: currentVersion(),
   running: false,
-  cycle: POLISH_CYCLES.UNPOLISHED,
+  cycle: POLISH_CYCLES.NONE,
   washed: false,
   canChangeGrit: false,
   rockLists: {

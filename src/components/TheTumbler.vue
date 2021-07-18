@@ -160,7 +160,6 @@ export default defineComponent({
           if (cycle !== POLISH_CYCLES.POLISH) {
             this.$store.commit('setRunning', false)
             this.$store.commit('setWashed', false)
-            this.$store.commit('setCanChangeGrit', true)
           }
           this.pause = true // pause the timer
           clearInterval(this.interval)
@@ -173,7 +172,6 @@ export default defineComponent({
         const seconds = Math.floor(distance % 60)
 
         this.timerDisplay = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's '
-        console.log(this.$store.state.godmode)
       }, 1000)
     },
     updateGritCycle () {
@@ -225,7 +223,7 @@ export default defineComponent({
       return this.$store.state.running
     },
     isUnpolished (): boolean {
-      return this.$store.state.cycle === POLISH_CYCLES.UNPOLISHED
+      return this.$store.state.cycle === POLISH_CYCLES.NONE
     },
     isPolished (): boolean {
       return this.$store.state.cycle === POLISH_CYCLES.POLISH

@@ -239,7 +239,7 @@ export default defineComponent({
       this.$router.push({ name: 'Wash' })
     },
     assetForRock (rock: Rock) {
-      return ROCK_DATA[rock.type].assets[POLISH_CYCLES.UNPOLISHED]
+      return ROCK_DATA[rock.type].assets[POLISH_CYCLES.NONE]
     },
     bioForRock (rock: Rock) {
       return ROCK_DATA[rock.type].bio

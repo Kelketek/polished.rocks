@@ -75,7 +75,6 @@ export default defineComponent({
       if (event.target.files) {
         const file = event.target.files[0]
         if (file.name.slice(-5) !== '.json') {
-          console.log('error condition')
           this.alertMessage = 'Cannot import file!'
           this.alert = true
         } else {
