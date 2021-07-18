@@ -10,6 +10,9 @@
   </div>
   <div class="footer-vid-container">
     <video :class="{'position-relative': true, 'footer-vid': true, 'd-none': !playing}" :src="require('../assets/watersplash_VP9.webm')" loop muted autoplay></video>
+    <audio class="tumbler-page-audio" :autoplay="playing" ref="audio">
+      <source :src="require('../assets/audio/washing.mp4')" type="audio/mp4">
+    </audio>
   </div>
   <teleport to="#footer">
     <v-footer app>
@@ -90,6 +93,14 @@ export default defineComponent({
     },
     rockData (rock: Rock) {
       return ROCK_DATA[rock.type].assets[this.currentStage]
+    }
+  },
+  watch: {
+    playing (value: boolean) {
+      const audio = this.$refs.audio as HTMLAudioElement
+      if (value) {
+        audio.play()
+      }
     }
   },
   computed: {
