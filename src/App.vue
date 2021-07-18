@@ -64,6 +64,10 @@ export default defineComponent({
           title: 'Team',
           path: this.$router.resolve({ name: 'Credits' }),
           disabled: false
+        },
+        {
+          title: 'Import',
+          path: '/Import'
         }
       ]
     }
