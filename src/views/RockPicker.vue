@@ -98,7 +98,7 @@
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background-color: #c2b280;
+  background-color: #986931;
 }
 
 .alert-title {
