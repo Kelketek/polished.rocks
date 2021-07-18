@@ -78,6 +78,7 @@
             <v-btn
               elevation="2"
               color="success"
+              @click.stop="moveToTrophy"
               :to="{ name: 'Trophy' }"
               block>
               <v-icon left>mdi-diamond-stone</v-icon>
@@ -193,6 +194,10 @@ export default defineComponent({
       const newTime = new Date()
       newTime.setSeconds(newTime.getSeconds() + 10)
       this.$store.commit('setNextStop', newTime)
+    },
+    moveToTrophy () {
+      const completedRocks = this.$store.state.rockLists.tumbling
+      this.$store.commit('moveRocks', { sourceList: 'tumbling', rocks: completedRocks, destList: 'polished' })
     }
   },
   computed: {
