@@ -81,7 +81,7 @@
               <v-icon left>mdi-clock-time-four-outline</v-icon>
               Godmode time skip
             </v-btn>
-            <p v-if="showTimer">
+            <p v-if="godmode || showTimer">
               {{ timer }}
             </p>
           </v-col>
