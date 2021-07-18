@@ -16,6 +16,7 @@
   <v-col>
     <v-card>
       <video
+        class="tumbler-page-video"
         :src="require('../assets/tumbler.webm')"
         type="video/webm"
         :autoplay="isRunning"
@@ -23,7 +24,11 @@
         muted
         playsinline
       ></video>
-      <audio class="tumbler-page-audio" autoplay loop muted>
+      <audio
+        class="tumbler-page-audio"
+        autoplay
+        loop
+        :muted="!isRunning">
         <source :src="require('../assets/audio/tumbler.mp4')" type="audio/mp4">
       </audio>
       <v-card-actions>
@@ -118,8 +123,6 @@ export default defineComponent({
   },
   mounted () {
     // this.$store.commit('incrementNextStop', 5) // for debugging purposes only
-    // const tumblerPageAudio!: HTMLAudioElement = document.getElementByClass('tumbler-page-audio')
-    // if (tumblerPageAudio) { tumblerPageAudio.muted = false }
   },
   methods: {
     updateTimer () {
@@ -139,10 +142,10 @@ export default defineComponent({
           return
         }
 
-        var days = Math.floor(distance / (60 * 60 * 24))
-        var hours = Math.floor((distance % (60 * 60 * 24)) / (60 * 60))
-        var minutes = Math.floor((distance % (60 * 60)) / 60)
-        var seconds = Math.floor(distance % 60)
+        const days = Math.floor(distance / (60 * 60 * 24))
+        const hours = Math.floor((distance % (60 * 60 * 24)) / (60 * 60))
+        const minutes = Math.floor((distance % (60 * 60)) / 60)
+        const seconds = Math.floor(distance % 60)
 
         this.timerDisplay = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's '
         console.log(this.$store.state.godmode)
