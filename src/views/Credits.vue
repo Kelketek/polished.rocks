@@ -13,7 +13,7 @@
     </v-row>
     <v-divider class="py-2" />
     <v-row>
-      <v-col cols="4" v-for="(item, index) in items" :key="index">
+      <v-col cols="12" lg="4" v-for="(item, index) in items" :key="index">
         <Credit :firstName="item.firstName" :lastName="item.lastName" :title="item.title" :link="item.link" :image="item.image" :blurb="item.blurb" />
       </v-col>
     </v-row>

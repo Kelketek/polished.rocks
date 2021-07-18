@@ -2,6 +2,7 @@
     <v-card>
       <v-img
         :src="image"
+        :aspect-ratio="800/1198"
       ></v-img>
 
       <v-card-title>

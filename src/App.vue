@@ -42,6 +42,11 @@ export default defineComponent({
       drawer: false
     }
   },
+  watch: {
+    '$route.name': function () {
+      this.drawer = false
+    }
+  },
   computed: {
     navigationItems () {
       return [

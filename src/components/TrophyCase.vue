@@ -7,6 +7,22 @@
           <v-img :src="assetForRockAtStage(rock, POLISH_CYCLES.POLISH)" :aspect-ratio="1"></v-img>
         </v-card>
       </v-col>
+      <v-col v-if="rocks.length === 0" cols="12" sm="8" offset-sm="1" md="6" offset-md="3" lg="4" offset-lg="4">
+        <v-card>
+          <v-card-title class="text-center">Nothing to see here, yet!</v-card-title>
+          <v-card-text class="text-center">
+            You'll see some rocks here once you've finished polishing them.
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-if="newCycle">
+      <v-col cols="12" sm="8" offset-sm="1" md="6" offset-md="3" lg="4" offset-lg="4">
+        <v-btn color="error" block :to="{ name: 'RockPicker' }">
+          <v-icon left>mdi-shovel</v-icon>
+          Go pick a dang rock
+        </v-btn>
+      </v-col>
     </v-row>
     <showcased-rock v-if="selectedRock" v-model="dialog" :rock="selectedRock" />
   </v-container>
@@ -40,6 +56,9 @@ export default defineComponent({
     rocks () { return this.$store.state.rockLists.polished },
     rockData (rock: Rock) {
       return ROCK_DATA[rock.type]
+    },
+    newCycle () {
+      return this.$store.state.rockLists.tumbling.length === 0
     }
   },
   data (): TrophyCaseData {
