@@ -10,7 +10,6 @@ import { Version } from '@/types/Version'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
 import deepEqual from 'fast-deep-equal'
 import Rock from '@/types/Rock'
-import { makeRock } from '@/lib'
 import { ROCK_DATA } from '@/constants'
 
 declare module '@vue/runtime-core' {
@@ -31,7 +30,7 @@ export const currentVersion = (): Version => ({
   // Major, Minor, and Patch might actually be a bit much for schema versioning, but ehhhhh....
   major: 0,
   minor: 1,
-  patch: 0
+  patch: 1
 })
 
 export const initialState = (): RockState => ({
@@ -42,6 +41,7 @@ export const initialState = (): RockState => ({
   cycle: POLISH_CYCLES.NONE,
   washed: false,
   canChangeGrit: false,
+  cycleCompleted: false,
   rockLists: {
     outside: [],
     polished: [],
@@ -104,14 +104,6 @@ export const initializeStore = (): Store<RockState> => {
         importState: (state: RockState, stateToImport: RockState) => {
           Object.assign(state, stateToImport)
         },
-        forceNeedWash: (state: RockState) => {
-          state.washed = false
-          state.running = false
-          state.rockLists.tumbling = [makeRock()]
-        },
-        forceTrophies: (state: RockState) => {
-          state.rockLists.polished = [makeRock(), makeRock(), makeRock(), makeRock(), makeRock()]
-        },
         setRunning: (state: RockState, value: boolean) => {
           state.running = value
         },
@@ -130,6 +122,12 @@ export const initializeStore = (): Store<RockState> => {
           nextStopDate.setDate(currentDate.getDate() + by)
           state.nextStop = nextStopDate.toISOString()
         },
+        setCycleCompleted: (state: RockState, value: boolean) => {
+          state.cycleCompleted = value
+        },
+        setGritCycle: (state: RockState, value: POLISH_CYCLES) => {
+          state.cycle = value
+        },
         setNextGritCycle: (state: RockState) => {
           state.cycle = ROCK_DATA.POLISH_CYCLE_NEXT[state.cycle as POLISH_CYCLES]
         },
@@ -145,6 +143,14 @@ export const initializeStore = (): Store<RockState> => {
           const movingRocks = state.rockLists[sourceList].filter((rock: Rock) => toMoveIds.includes(rock.id))
           commit('removeRocks', { rockList: sourceList, rocks: movingRocks })
           commit('addRocks', { rockList: destList, rocks: movingRocks })
+        },
+        reset: ({ state, commit }) => {
+          commit('setGritCycle', POLISH_CYCLES.NONE)
+          commit('setWashed', false)
+          commit('canChangeGrit', false)
+          commit('setRunning', false)
+          commit('setNextStop', new Date().toISOString())
+          commit('removeRocks', { rocks: state.rockLists.tumbling, rockList: 'tumbling' })
         }
       },
       plugins: [stateSavePlugin]

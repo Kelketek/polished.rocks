@@ -10,6 +10,7 @@ export interface RockState {
   washed: boolean,
   godmode: boolean,
   canChangeGrit: boolean,
+  cycleCompleted: boolean,
   rockLists: {
     tumbling: Rock[],
     outside: Rock[],

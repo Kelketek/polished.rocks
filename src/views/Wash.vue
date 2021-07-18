@@ -26,8 +26,11 @@
           <v-col cols="6">
             <v-btn @click="washRocks" :disabled="washed" block color="primary">Perform wash</v-btn>
           </v-col>
-          <v-col cols="6">
-            <v-btn v-if="washed && !playing" :to="{name: 'Tumbler'}" color="secondary" block>Go to Tumbler</v-btn>
+          <v-col cols="6" v-if="washed && !playing && !finished">
+            <v-btn :to="{name: 'Tumbler'}" color="secondary" block>Go to Tumbler</v-btn>
+          </v-col>
+          <v-col cols="6" v-if="finished">
+            <v-btn v-if="finished" color="success" @click="moveToTrophy" block>Add to Trophies</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -73,6 +76,7 @@ import { defineComponent } from 'vue'
 import { ROCK_DATA } from '@/constants'
 import Rock from '@/types/Rock'
 import { POLISH_CYCLES } from '@/types/POLISH_CYCLES'
+import { collectTrophies } from '@/lib'
 
 export default defineComponent({
   name: 'Wash.vue',
@@ -97,6 +101,10 @@ export default defineComponent({
     },
     rockData (rock: Rock) {
       return ROCK_DATA[rock.type].assets[this.currentStage]
+    },
+    moveToTrophy () {
+      collectTrophies(this.$store)
+      this.$router.push({ name: 'Trophy' })
     }
   },
   watch: {
@@ -110,7 +118,13 @@ export default defineComponent({
   computed: {
     washed () { return this.$store.state.washed },
     rocks () { return this.$store.state.rockLists.tumbling },
-    currentStage () { return this.$store.state.cycle }
+    currentStage () { return this.$store.state.cycle },
+    finished () {
+      return (
+        (this.$store.state.cycle === POLISH_CYCLES.POLISH) &&
+        this.$store.state.washed &&
+        this.$store.state.cycleCompleted)
+    }
   },
   created () {
     const state = this.$store.state

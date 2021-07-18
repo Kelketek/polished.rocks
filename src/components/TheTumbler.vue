@@ -128,6 +128,7 @@ import { defineComponent } from 'vue'
 import { differenceInSeconds, formatRelative } from 'date-fns'
 import { POLISH_CYCLES } from '../types/POLISH_CYCLES'
 import { ROCK_DATA } from '@/constants'
+import { collectTrophies } from '@/lib'
 
 export default defineComponent({
   name: 'TheTumbler',
@@ -165,11 +166,9 @@ export default defineComponent({
 
         if (distance <= 0) {
           this.timerDisplay = 'Complete'
-          const cycle = this.$store.state.cycle
-          if (cycle !== POLISH_CYCLES.POLISH) {
-            this.$store.commit('setRunning', false)
-            this.$store.commit('setWashed', false)
-          }
+          this.$store.commit('setRunning', false)
+          this.$store.commit('setCycleCompleted', true)
+          this.$store.commit('setWashed', false)
           this.pause = true // pause the timer
           clearInterval(this.interval)
           return
@@ -185,6 +184,7 @@ export default defineComponent({
     },
     updateGritCycle () {
       this.$store.commit('setCanChangeGrit', false)
+      this.$store.commit('setCycleCompleted', false)
       this.$store.commit('setNextGritCycle')
     },
     startPolishing () {
@@ -202,10 +202,8 @@ export default defineComponent({
       this.$store.commit('setNextStop', newTime)
     },
     moveToTrophy () {
-      const completedRocks = this.$store.state.rockLists.tumbling
-      this.$store.dispatch('moveRocks', { sourceList: 'tumbling', rocks: completedRocks, destList: 'polished' }).then(() => {
-        this.$router.push({ name: 'Trophy' })
-      })
+      collectTrophies(this.$store)
+      this.$router.push({ name: 'Trophy' })
     }
   },
   computed: {
@@ -228,6 +226,9 @@ export default defineComponent({
     rockExists (): boolean {
       return this.$store.state.rockLists.tumbling.length > 0
     },
+    cycleCompleted (): boolean {
+      return this.$store.state.cycleCompleted
+    },
     isRunning (): boolean {
       return this.$store.state.running
     },
@@ -247,10 +248,10 @@ export default defineComponent({
     },
     canPolish (): boolean {
       // can polish if rock exists, is not tumbling, grit is one step up from last, is washed, and is not in polished state
-      return this.rockExists && !this.isRunning && !this.$store.state.canChangeGrit && this.$store.state.washed && !(this.isPolished && !this.canWash)
+      return this.rockExists && !this.isRunning && !this.$store.state.canChangeGrit && this.$store.state.washed && !(this.isPolished && this.cycleCompleted)
     },
     canMoveToTrophy (): boolean {
-      return this.isPolished && !this.canWash
+      return this.isPolished && !this.canWash && this.cycleCompleted
     }
   }
 })

@@ -55,3 +55,11 @@ export const godModeListener = (store: Store<RockState>): (event: KeyboardEvent)
     }
   }
 }
+
+export const collectTrophies = (store: Store<RockState>): void => {
+  store.dispatch(
+    'moveRocks', { sourceList: 'tumbling', rocks: store.state.rockLists.tumbling, destList: 'polished' }
+  ).then(() => {
+    store.dispatch('reset').then()
+  })
+}
