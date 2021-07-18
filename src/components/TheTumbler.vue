@@ -79,7 +79,6 @@
               elevation="2"
               color="success"
               @click.stop="moveToTrophy"
-              :to="{ name: 'Trophy' }"
               block>
               <v-icon left>mdi-diamond-stone</v-icon>
               Move to Trophy Case
@@ -197,7 +196,9 @@ export default defineComponent({
     },
     moveToTrophy () {
       const completedRocks = this.$store.state.rockLists.tumbling
-      this.$store.commit('moveRocks', { sourceList: 'tumbling', rocks: completedRocks, destList: 'polished' })
+      this.$store.dispatch('moveRocks', { sourceList: 'tumbling', rocks: completedRocks, destList: 'polished' }).then(() => {
+        this.$router.push({ name: 'Trophy' })
+      })
     }
   },
   computed: {
