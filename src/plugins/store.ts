@@ -100,6 +100,9 @@ export const initializeStore = (): Store<RockState> => {
           const toRemove = rocksToIds(rocks)
           state.rockLists[rockList] = state.rockLists[rockList].filter((rock: Rock) => !toRemove.includes(rock.id))
         },
+        importState: (state: RockState, stateToImport: RockState) => {
+          Object.assign(state, stateToImport)
+        },
         forceNeedWash: (state: RockState) => {
           state.washed = false
           state.running = false

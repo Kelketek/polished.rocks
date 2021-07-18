@@ -1,4 +1,15 @@
 <template>
+  <v-container class="alert-title">
+    <v-alert
+        v-model="alert"
+        color="primary"
+        closable
+      >
+      <div class="alert-text text-center">
+        {{ alertMessage }}
+      </div>
+      </v-alert>
+  </v-container>
   <v-container>
     <v-card class="text-center">
       <v-card-title class="justify-center">Wanna save your precious rocks?</v-card-title>
@@ -13,18 +24,31 @@
     </v-card>
     <v-card class="text-center">
       <v-card-title class="justify-center">Fill up your rocks</v-card-title>
-      <input type="file" @change="importToStore">
-      <!-- <v-btn
-        color="primary"
-        @click.stop="importToStore()"
-        class="ma-2"
-      >
-      Import
-        <v-icon dark right>mdi-cloud-upload</v-icon>
-      </v-btn> -->
+      <label for="file-upload" class="custom-file-upload v-btn v-btn--elevated v-theme--dark bg-primary v-btn--density-default v-btn--size-default v-btn--variant-contained ma-2">
+        <v-icon dark right>mdi-cloud-upload</v-icon>&nbsp;&nbsp;Upload File
+      </label>
+      <input
+        id="file-upload"
+        type="file"
+        @change="importToStore"
+        class="file-upload ma-2">
     </v-card>
   </v-container>
 </template>
+
+<style scoped>
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: rgb(187, 134, 252)
+}
+</style>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
@@ -49,23 +73,37 @@ export default defineComponent({
     },
     importToStore (event: HTMLInputEvent) {
       if (event.target.files) {
-        this.readFiles(event.target.files[0])
+        const file = event.target.files[0]
+        if (file.name.slice(-5) !== '.json') {
+          console.log('error condition')
+          this.alertMessage = 'Cannot import file!'
+          this.alert = true
+        } else {
+          this.readFiles(file)
+        }
+        event.target.value = ''
       }
     },
     readFiles (file: Blob): void {
       const fileReader = new FileReader()
       fileReader.readAsText(file)
       fileReader.onload = () => {
-        console.log(fileReader.result)
+        const importedData = JSON.parse(fileReader.result as string)
+        this.$store.commit('importState', importedData)
+        this.alertMessage = `Your ${this.$store.state.rockLists.tumbling.length} tumbling rocks and ${this.$store.state.rockLists.polished.length} polished rocks have been imported`
+        this.alert = true
       }
 
       fileReader.onerror = () => {
-        console.log(fileReader.error)
+        this.alertMessage = fileReader.error?.toString() ?? 'Error reading file'
+        this.alert = true
       }
     }
   },
   data () {
     return {
+      alert: false,
+      alertMessage: ''
     }
   }
 })
