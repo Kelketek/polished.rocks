@@ -25,8 +25,10 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.PREPOLISH]: require('./assets/lapis_lazuli/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/lapis_lazuli/polish.svg')
     },
-    bio: 'Is it cheesy to say that you lapis-light up my life. You rock my would! I just wished the barrier reef was as Blue as you.',
-    profile: 'Blue, had been used by civilizations for over 6,500 years, often used as makeup and sculpture, positively influences friendship and honesty'
+    bio: `<p class="mb-2">Man, this blue up.</p>
+          <p>If you've got an eye for beauty</p>.`,
+    profile: `<p>Blue, had been used by civilizations for over 6,500 years. Frequently used as makeup and in sculptures.
+              Folklore says it positively influences friendship and honesty.</p>`
   },
   [ROCK_TYPES.JADE]: {
     assets: {
@@ -36,8 +38,10 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.PREPOLISH]: require('./assets/jade/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/jade/polish.svg')
     },
-    bio: 'She is a happy-go-lucky, 12 year old girl, and the niece of Jackie Chan.Even know she might be a little bit green!',
-    profile: 'Green, used in jewelry and weapons, as valuable in Diamonds in China, large market for fake jade, believed by some to prevent illness'
+    bio: `<p class="mb-2">I hail from the east, but I've got a Latin vibe, too.
+          If you're hangin' with me, expect your friends to envy you!</p>`,
+    profile: `<p>Green, used in jewelry and weapons, as valuable in Diamonds in China. There is a large market for
+             fake jade, as the stone is believed to prevent illness.</p>`
   },
   [ROCK_TYPES.OBSIDIAN]: {
     assets: {
@@ -47,8 +51,11 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.PREPOLISH]: require('./assets/obsidian/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/obsidian/polish.svg')
     },
-    bio: 'What did the boy volcano say to the girl volcano? Really lave you! Your glasses are blacker than my blackboard to see.',
-    profile: 'Black, Formed in cooled volcano flows, has a glassy luster, harder than window glass, was used to make sharp artifacts such as arrowheads'
+    bio: `<p class="mb-2">What did the boy volcano say to the girl volcano? I lava you!</p>
+         <p>I love it when it gets dark.</p>`,
+    profile: `<p>Black, Formed in cooled volcano flows, has a glassy luster. Harder than window glass,
+              obsidian was used to make sharp artifacts including knives and arrowheads. It is sometimes used in
+              scalpels to reduce scar tissue because of how sharp it can get.</p>`
   },
   [ROCK_TYPES.MARBLE]: {
     assets: {
@@ -58,8 +65,9 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.PREPOLISH]: require('./assets/marble/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/marble/polish.svg')
     },
-    bio: 'One of the Catholic Church Pope’s hated the male status with the long dongs? But the church loves the little kids one.',
-    profile: 'Actually metamorphosed limestone so not as it appears, Used in classic Greek sculptures, Never stops changing'
+    bio: '<p class="mb-2">I have a passion for the arts. I help my buddy Mike sculpt naked dudes and chicks.</p>',
+    profile: `<p>Actually metamorphosed limestone rather than a complete separate mineral. Used in classic Greek
+              sculptures. Never stops changing.</p>`
   },
   [ROCK_TYPES.RUBY]: {
     assets: {
@@ -69,8 +77,10 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.PREPOLISH]: require('./assets/ruby/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/ruby/polish.svg')
     },
-    bio: 'I’ll have another Bloody Mary please. Blood coming out of her ears, eyes, and mouth blood coming out of her wherever!',
-    profile: 'Red, worn to protect warriors in battle like the slippers in wizard of oz, nearly as hard as diamonds'
+    bio: `<p class="mb-2">Are you contemplating going out some where? The shadow on the wall tells me the sun is going down.</p>
+         <p>Don't take your love to town!</p>`,
+    profile: `<p>Red, worn to protect warriors in battle. Made excellent slippers in The Wizard of Oz.
+             Nearly as hard as diamond.</p>`
   },
   [ROCK_TYPES.ONYX]: {
     assets: {
@@ -80,8 +90,10 @@ export const ROCK_DATA = {
       [POLISH_CYCLES.PREPOLISH]: require('./assets/onyx/prepolish.svg'),
       [POLISH_CYCLES.POLISH]: require('./assets/onyx/polished.svg')
     },
-    bio: 'The band concert tonight is allowing flesh-colored earplugs only. These kids have feelings too.',
-    profile: 'Is thought to increase regeneration, happiness, intuition, instincts and also believed to decrease sexual desire and helps to change bad habits.'
+    bio: '<p class="mb-2">The band concert tonight is allowing flesh-colored earplugs only. These kids have feelings too.</p>',
+    profile: `<p class="mb-2">Is thought to increase regeneration, happiness, intuition, and instincts.
+              Valued as an aphrodisiac and for treating bad habits.</p>
+              <p>Plus, it just looks cool.</p>`
   }
 }
 

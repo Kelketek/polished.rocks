@@ -13,9 +13,7 @@
       />
       <v-card-text>
         <v-row>
-          <v-col cols="12">
-            {{ profileForRock(rock) }}
-          </v-col>
+          <v-col cols="12" v-html="profileForRock(rock)" />
         </v-row>
         <v-row>
           <v-col cols="3">
