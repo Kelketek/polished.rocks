@@ -97,6 +97,7 @@
 import { defineComponent } from 'vue'
 import { differenceInSeconds, formatRelative } from 'date-fns'
 import { POLISH_CYCLES } from '../types/POLISH_CYCLES'
+import { ROCK_DATA } from '@/constants'
 
 export default defineComponent({
   name: 'TheTumbler',
@@ -141,12 +142,7 @@ export default defineComponent({
     },
     startPolishing () {
       const cycle = this.$store.state.cycle
-      const timeToPolish = (cycle === POLISH_CYCLES.UNPOLISHED ? 7
-        : cycle === POLISH_CYCLES.COARSE ? 7
-          : cycle === POLISH_CYCLES.FINE ? 3
-            : cycle === POLISH_CYCLES.PREPOLISH ? 3
-              : cycle === POLISH_CYCLES.POLISH ? 0
-                : 0)
+      const timeToPolish = ROCK_DATA.POLISH_CYCLE_TIMES[cycle]
 
       this.$store.commit('incrementNextStop', timeToPolish)
       this.$store.commit('setRunning', true)
