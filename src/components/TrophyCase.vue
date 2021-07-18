@@ -8,7 +8,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <showcased-rock v-if="selectedRock" v-model="dialog" :rock="selectedRock"></showcased-rock>
+    <showcased-rock v-if="selectedRock" v-model="dialog" :rock="selectedRock" />
   </v-container>
 </template>
 
