@@ -41,6 +41,7 @@
         >
           <v-img
             :src="assetForRock(rock)"
+            aspect-ratio="1"
           />
         </div>
       </div>
@@ -52,6 +53,7 @@
         <v-img
           :src="assetForRock(selectedRock)"
           contain
+          aspect-ratio="1"
           height="200"
         />
         <v-card-text>
