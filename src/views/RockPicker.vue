@@ -205,6 +205,8 @@
 <style>
 .unwashed img {
   filter: sepia(100%);
+  /* Fix disappearing rocks due to fade-transition-leave-to class */
+  opacity: 100 !important;
 }
 </style>
 
