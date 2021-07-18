@@ -125,7 +125,8 @@ export default defineComponent({
   data: () => {
     return {
       timerDisplay: '',
-      interval: 0
+      interval: 0,
+      pause: false
     }
   },
   mounted () {
@@ -156,6 +157,7 @@ export default defineComponent({
             this.$store.commit('setRunning', false)
             this.$store.commit('setWashed', false)
           }
+          this.pause = true // pause the timer
           return
         }
 
@@ -177,6 +179,7 @@ export default defineComponent({
 
       this.$store.commit('incrementNextStop', timeToPolish)
       this.$store.commit('setRunning', true)
+      this.pause = false
     },
     godmodeTimeSkip () {
       // sets next stop to be 10 seconds from now
@@ -196,7 +199,7 @@ export default defineComponent({
       return this.$store.state.godmode
     },
     timer (): string {
-      if (this.interval === 0) this.updateTimer()
+      if (this.interval === 0 && this.pause === false) this.updateTimer()
       return this.timerDisplay
     },
     getCurrentGrit (): POLISH_CYCLES {
