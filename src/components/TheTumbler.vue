@@ -23,7 +23,7 @@
         muted
         playsinline
       ></video>
-      <audio controls autoplay muted>
+      <audio class="tumbler-page-audio" autoplay loop muted>
         <source :src="require('../assets/audio/tumbler.mp4')" type="audio/mp4">
       </audio>
       <v-card-actions>
@@ -118,6 +118,8 @@ export default defineComponent({
   },
   mounted () {
     // this.$store.commit('incrementNextStop', 5) // for debugging purposes only
+    // const tumblerPageAudio!: HTMLAudioElement = document.getElementByClass('tumbler-page-audio')
+    // if (tumblerPageAudio) { tumblerPageAudio.muted = false }
   },
   methods: {
     updateTimer () {
