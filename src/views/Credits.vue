@@ -34,12 +34,12 @@ export default defineComponent({
   data () {
     return {
       items: [
-        { firstName: 'Fox', lastName: 'Piacenti', title: 'Founder & CEO', link: 'https://www.artconomy.com', image: CREW_DATA.PHOTO_PATH.FOX, blurb: 'Fox Piacenti is a software solutions architect and generalist. He runs Artconomy.com, a website that makes it easy for you to get art commissioned of your original characters. His bachelor party was to make the app you’re looking at in less than three days! Fox enjoys ambitious projects, art, software, and thoughtful conversations about power structures and organizational design.' },
-        { firstName: 'Joseph Daniel', lastName: 'Piacenti', title: 'Animator & Sound Engineer', image: CREW_DATA.PHOTO_PATH.JOE },
-        { firstName: 'Jeremy', lastName: 'Evans', title: 'Visual Artist', image: CREW_DATA.PHOTO_PATH.JEREMY },
-        { firstName: 'Brad', lastName: 'Rogers', title: 'Designer', image: CREW_DATA.PHOTO_PATH.BRAD },
-        { firstName: 'Corey', lastName: 'Pon', title: 'Software Engineer', link: 'https://www.github.com/cjames9001', image: CREW_DATA.PHOTO_PATH.COREY },
-        { firstName: 'Taylor', lastName: 'Glenn', title: 'Software Engineer', image: CREW_DATA.PHOTO_PATH.TAYLOR }
+        { firstName: CREW_DATA.FOX.FIRST_NAME, lastName: CREW_DATA.FOX.LAST_NAME, title: CREW_DATA.FOX.TITLE, link: CREW_DATA.FOX.LINK, image: CREW_DATA.FOX.PHOTO_PATH, blurb: CREW_DATA.FOX.BLURB },
+        { firstName: CREW_DATA.JOE.FIRST_NAME, lastName: CREW_DATA.JOE.LAST_NAME, title: CREW_DATA.JOE.TITLE, link: CREW_DATA.JOE.LINK, image: CREW_DATA.JOE.PHOTO_PATH, blurb: CREW_DATA.JOE.BLURB },
+        { firstName: CREW_DATA.JEREMY.FIRST_NAME, lastName: CREW_DATA.JEREMY.LAST_NAME, title: CREW_DATA.JEREMY.TITLE, link: CREW_DATA.JEREMY.LINK, image: CREW_DATA.JEREMY.PHOTO_PATH, blurb: CREW_DATA.JEREMY.BLURB },
+        { firstName: CREW_DATA.BRAD.FIRST_NAME, lastName: CREW_DATA.BRAD.LAST_NAME, title: CREW_DATA.BRAD.TITLE, link: CREW_DATA.BRAD.LINK, image: CREW_DATA.BRAD.PHOTO_PATH, blurb: CREW_DATA.BRAD.BLURB },
+        { firstName: CREW_DATA.COREY.FIRST_NAME, lastName: CREW_DATA.COREY.LAST_NAME, title: CREW_DATA.COREY.TITLE, link: CREW_DATA.COREY.LINK, image: CREW_DATA.COREY.PHOTO_PATH, blurb: CREW_DATA.COREY.BLURB },
+        { firstName: CREW_DATA.TAYLOR.FIRST_NAME, lastName: CREW_DATA.TAYLOR.LAST_NAME, title: CREW_DATA.TAYLOR.TITLE, link: CREW_DATA.TAYLOR.LINK, image: CREW_DATA.TAYLOR.PHOTO_PATH, blurb: CREW_DATA.TAYLOR.BLURB }
       ]
     }
   }
