@@ -94,6 +94,46 @@ export const ROCK_DATA = {
     profile: `<p class="mb-2">Is thought to increase regeneration, happiness, intuition, and instincts.
               Valued as an aphrodisiac and for treating bad habits.</p>
               <p>Plus, it just looks cool.</p>`
+  },
+  [ROCK_TYPES.EMERALD]: {
+    assets: {
+      [POLISH_CYCLES.UNPOLISHED]: require('./assets/emerald/unpolished.svg'),
+      [POLISH_CYCLES.COARSE]: require('./assets/emerald/coarse.svg'),
+      [POLISH_CYCLES.FINE]: require('./assets/emerald/fine.svg'),
+      [POLISH_CYCLES.PREPOLISH]: require('./assets/emerald/prepolish.svg'),
+      [POLISH_CYCLES.POLISH]: require('./assets/emerald/polished.svg')
+    },
+    bio: `<p>I always like to be included. I’m a cut above the rest.
+         Pick me and you’ll be the envy of all your friends!</p>`,
+    profile: `<p>Green, majority from Colombia, putting it under your tongue would help you see the future,
+             very rarely without imperfections</p>`
+  },
+  [ROCK_TYPES.TOPAZ]: {
+    assets: {
+      [POLISH_CYCLES.UNPOLISHED]: require('./assets/topaz/unpolished.svg'),
+      [POLISH_CYCLES.COARSE]: require('./assets/topaz/coarse.svg'),
+      [POLISH_CYCLES.FINE]: require('./assets/topaz/fine.svg'),
+      [POLISH_CYCLES.PREPOLISH]: require('./assets/topaz/prepolish.svg'),
+      [POLISH_CYCLES.POLISH]: require('./assets/topaz/polished.svg')
+    },
+    bio: `<p>Who you callin' yella?</p>`,
+    profile: `<p>It is believed to attract wealth and money. This gemstone is also said to bring good fortune especially
+              in the form of gold. Now that's a deal everyone would love!</p>`
+  },
+  [ROCK_TYPES.GYPSUM]: {
+    assets: {
+      [POLISH_CYCLES.UNPOLISHED]: require('./assets/gypsum/unpolished.svg'),
+      [POLISH_CYCLES.COARSE]: require('./assets/gypsum/coarse.svg'),
+      [POLISH_CYCLES.FINE]: require('./assets/gypsum/fine.svg'),
+      [POLISH_CYCLES.PREPOLISH]: require('./assets/gypsum/prepolish.svg'),
+      [POLISH_CYCLES.POLISH]: require('./assets/gypsum/polished.svg')
+    },
+    bio: `<p class="mb-2">Rest in peace, boiling water. You will be mist!</p>
+          <p>Forget the five second rule-- the one drop rule is where it's at!</p>`,
+    profile: `<p>Ancient Assyrians called it Alabaster and used it for sculpting. Today it is used to manufacture
+              wallboard and cement.</p>
+              <p>Excellent fire retardation, Gypsum will not get hotter than 212F until all of the crystallized water
+              has been vaporized to steam.</p>`
   }
 }
 
