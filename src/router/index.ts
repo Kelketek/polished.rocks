@@ -33,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/trophy',
     name: 'Trophy',
     component: () => import('../views/Trophy.vue')
+  },
+  {
+    path: '/shared',
+    name: 'Shared',
+    component: () => import('../views/Shared.vue')
   }
 ]
 

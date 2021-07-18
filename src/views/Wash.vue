@@ -104,7 +104,7 @@ export default defineComponent({
       this.$router.replace({ name: 'Tumbler' })
     }
     if (state.rockLists.tumbling.length === 0) {
-      this.$router.replace({ name: 'PickRocks' })
+      this.$router.replace({ name: 'RockPicker' })
     }
   },
   data (): {playing: boolean, alternate: boolean} {

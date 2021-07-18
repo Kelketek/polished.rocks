@@ -1,22 +1,21 @@
 <template>
-    <v-card class="credit-card">
+    <v-card>
       <v-img
         src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        cover
         height="200px"
       ></v-img>
 
-      <v-card-title class="title-text">
+      <v-card-title>
         <a :href="link" target="_none">{{ firstName }} {{ lastName }}</a>
       </v-card-title>
-
-      <v-card-subtitle class="name-text">
-        {{ title }}
-      </v-card-subtitle>
-
-      <hr>
-      <v-card-subtitle class="description-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui voluptates magnam ratione mollitia. Tempore quam repudiandae autem ex dolor adipisci corrupti molestias ipsa architecto sed, aliquid nemo ad quas quod!
-      </v-card-subtitle>
+      <v-card-text>
+        <v-card-subtitle>
+          {{ title }}
+        </v-card-subtitle>
+        <v-divider class="py-2" />
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui voluptates magnam ratione mollitia. Tempore quam repudiandae autem ex dolor adipisci corrupti molestias ipsa architecto sed, aliquid nemo ad quas quod!</p>
+      </v-card-text>
     </v-card>
 </template>
 
@@ -49,20 +48,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped>
-.title-text {
-  padding: 0 0.5em;
-}
-.name-text {
-  padding: 1em;
-}
-.description-text {
-  padding: 1em;
-}
-.credit-card {
-  width: auto;
-  background-color: darkgray;
-  color: white;
-}
-</style>
