@@ -125,11 +125,16 @@ export default defineComponent({
   data: () => {
     return {
       timerDisplay: '',
-      interval: 0
+      interval: 0,
+      pause: true
     }
   },
   mounted () {
     // this.$store.commit('incrementNextStop', 5) // for debugging purposes only
+    this.$store.commit('setGodmode', true)
+  },
+  unmounted () {
+    clearInterval(this.interval)
   },
   watch: {
     isRunning (value: boolean) {
@@ -155,7 +160,10 @@ export default defineComponent({
           if (cycle !== POLISH_CYCLES.POLISH) {
             this.$store.commit('setRunning', false)
             this.$store.commit('setWashed', false)
+            this.$store.commit('setCanChangeGrit', true)
           }
+          this.pause = true // pause the timer
+          clearInterval(this.interval)
           return
         }
 
@@ -169,6 +177,7 @@ export default defineComponent({
       }, 1000)
     },
     updateGritCycle () {
+      this.$store.commit('setCanChangeGrit', false)
       this.$store.commit('setNextGritCycle')
     },
     startPolishing () {
@@ -177,6 +186,7 @@ export default defineComponent({
 
       this.$store.commit('incrementNextStop', timeToPolish)
       this.$store.commit('setRunning', true)
+      this.pause = false
     },
     godmodeTimeSkip () {
       // sets next stop to be 10 seconds from now
@@ -196,7 +206,7 @@ export default defineComponent({
       return this.$store.state.godmode
     },
     timer (): string {
-      if (this.interval === 0) this.updateTimer()
+      if (this.interval === 0 && this.pause === false) this.updateTimer()
       return this.timerDisplay
     },
     getCurrentGrit (): POLISH_CYCLES {
@@ -219,12 +229,12 @@ export default defineComponent({
       return this.rockExists && !this.isRunning && !this.$store.state.washed && !this.isPolished
     },
     canChangeGrit (): boolean {
-      // can change grit if rock exists, is not tumbling, is washed, and is not in unpolished or polished state
-      return this.rockExists && !this.isRunning && this.$store.state.washed && !this.isUnpolished && !this.isPolished
+      // can change grit if rock exists, is not tumbling, is washed, and is not in polished state
+      return this.rockExists && !this.isRunning && this.$store.state.canChangeGrit && this.$store.state.washed && !this.isPolished
     },
     canPolish (): boolean {
       // can polish if rock exists, is not tumbling, grit is one step up from last, is washed, and is not in polished state
-      return this.rockExists && !this.isRunning && !this.canChangeGrit && this.$store.state.washed && !this.isPolished
+      return this.rockExists && !this.isRunning && !this.$store.state.canChangeGrit && this.$store.state.washed && !this.isPolished
     },
     canMoveToTrophy (): boolean {
       return this.isPolished

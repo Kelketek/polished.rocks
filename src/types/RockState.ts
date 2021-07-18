@@ -9,6 +9,7 @@ export interface RockState {
   nextStop: string,
   washed: boolean,
   godmode: boolean,
+  canChangeGrit: boolean,
   rockLists: {
     tumbling: Rock[],
     outside: Rock[],
