@@ -132,7 +132,7 @@ export default defineComponent({
   },
   mounted () {
     // this.$store.commit('incrementNextStop', 5) // for debugging purposes only
-    this.$store.commit('setGodmode', true)
+    // this.$store.commit('setGodmode', true) // for some browsers, god mode doesn't seem to work. uncomment this line to force it.
   },
   unmounted () {
     clearInterval(this.interval)
