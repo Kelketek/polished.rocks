@@ -13,7 +13,7 @@
 </v-row>
 <v-row>
   <v-col cols="12" md="8" lg="6" offset-lg="3" offset-md="2">
-    <v-card>
+    <v-card class="text-center">
       <video
         class="tumbler-page-video"
         :src="require('../assets/tumbler.webm')"

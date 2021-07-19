@@ -18,7 +18,8 @@
       closable
     >
     <div class="alert-text text-center">
-      Choose A Rock To Polish
+      <span v-if="remainingRocks === 1">Choose 1 More Rock To Polish</span>
+      <span v-else>Choose {{remainingRocks}} More Rocks to Polish</span>
     </div>
     </v-alert>
 </v-container>
@@ -234,11 +235,12 @@ export default defineComponent({
       this.dialog = true
     },
     rockChosen (rock: Rock) {
-      this.$store.commit('addRocks', { rockList: 'tumbling', rocks: [rock] })
-      if (this.tumbling.length >= TARGET_ROCK_COUNT) {
-        this.$router.push({ name: 'Wash' })
-      }
-      this.dialog = false
+      this.$store.dispatch('moveRocks', { sourceList: 'outside', rocks: [rock], destList: 'tumbling' }).then(() => {
+        if (this.tumbling.length >= TARGET_ROCK_COUNT) {
+          this.$router.push({ name: 'Wash' })
+        }
+        this.dialog = false
+      })
     },
     assetForRock (rock: Rock) {
       return ROCK_DATA[rock.type].assets[POLISH_CYCLES.NONE]
@@ -290,7 +292,8 @@ export default defineComponent({
     // mapState doesn't seem to work with TypeScript? Would have made this more succinct...
     rocks () { return this.$store.state.rockLists.outside },
     tumbling () { return this.$store.state.rockLists.tumbling },
-    running () { return this.$store.state.running }
+    running () { return this.$store.state.running },
+    remainingRocks () { return TARGET_ROCK_COUNT - this.$store.state.rockLists.tumbling.length }
   },
   data (): RockPickerData {
     return {
