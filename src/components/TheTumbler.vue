@@ -22,8 +22,8 @@
         playsinline
         ref="tumblerVideo"
       >
-        <source :src="require('../assets/tumbler.mov')" type="video/quicktime">
-        <source :src="require('../assets/tumbler.webm')" type="video/webm">
+        <source :src="require('../assets/tumbler.webm')" type="video/webm" />
+        <source :src="require('../assets/tumbler.mov')" type="video/quicktime" />
       </video>
       <audio
         class="tumbler-page-audio"
