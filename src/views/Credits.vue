@@ -1,17 +1,25 @@
 <template>
   <v-container>
-    <v-row class="pun-blurb">
+    <v-row>
+      <v-col cols="12" class="text-center">
+        <h1>://polished.rocks/</h1>
+        <h2>Get your shine on!</h2>
+      </v-col>
       <v-col>
-        <h1>Get your shine on!</h1>
-        <p>
-          Our team has been rocking hard to bring you the most imersive, complete rock-tumbling experience that you won't take for granite!
+        <v-img max-height="25vh" :aspect-ratio="1" :src="require('../assets/logo.svg')" class="py-2"></v-img>
+      </v-col>
+      <v-col cols="12" class="text-center">
+        <p class="pb-2">
+          Our team has been rocking hard to bring you the most immersive, complete rock-tumbling experience that you won't take for granite!
           So don't quarry about it!  Even if you've hit rock bottom, we're here to bring the power to the pebble with our marbelous virtual tumbler!
+        </p>
+        <p>
           Now you don't have to wait for rocks to go on shale in order to get your shine on!  Click on our names below if you'd like to chalk to one of us
           or just send us some lava!
         </p>
       </v-col>
     </v-row>
-    <v-divider class="py-2" />
+    <v-divider class="py-2 my-2" />
     <v-row>
       <v-col cols="12" lg="4" v-for="(item, index) in items" :key="index">
         <Credit :firstName="item.firstName" :lastName="item.lastName" :title="item.title" :link="item.link" :image="item.image" :blurb="item.blurb" />

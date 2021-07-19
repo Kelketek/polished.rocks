@@ -13,7 +13,7 @@
           {{ title }}
         </v-card-subtitle>
         <v-divider class="py-2" />
-        <p>{{ blurb }}</p>
+        <v-col v-html="blurb" />
       </v-card-text>
     </v-card>
 </template>
