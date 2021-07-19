@@ -9,7 +9,10 @@
     <img :src="require('../assets/waterstream2.svg')" width="30%" :class="{'d-inline-block': alternate && playing, 'd-none': !alternate || !playing, 'waterfall-image': true, shrunk: true}" />
   </div>
   <div class="footer-vid-container">
-    <video :class="{'position-relative': true, 'footer-vid': true, 'd-none': !playing}" :src="require('../assets/watersplash_VP9.webm')" loop muted autoplay></video>
+    <video :class="{'position-relative': true, 'footer-vid': true, 'd-none': !playing}" loop muted autoplay>
+      <source :src="require('../assets/watersplash.webm')" type="video/webm">
+      <source :src="require('../assets/watersplash.mov')" type="video/quicktime">
+    </video>
     <audio class="tumbler-page-audio" :autoplay="playing" ref="audio">
       <source :src="require('../assets/audio/washing.mp4')" type="audio/mp4">
     </audio>

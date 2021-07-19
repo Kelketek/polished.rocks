@@ -16,14 +16,15 @@
     <v-card class="text-center">
       <video
         class="tumbler-page-video"
-        :src="require('../assets/tumbler.webm')"
-        type="video/webm"
         :autoplay="isRunning"
         loop
         muted
         playsinline
         ref="tumblerVideo"
-      ></video>
+      >
+        <source :src="require('../assets/tumbler.mov')" type="video/quicktime">
+        <source :src="require('../assets/tumbler.webm')" type="video/webm">
+      </video>
       <audio
         class="tumbler-page-audio"
         autoplay
